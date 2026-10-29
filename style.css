@@ -2750,13 +2750,6 @@ body.light-theme .back-to-top {
     padding: 1.6rem 1.2rem;
   }
 
-  .award-ribbon {
-    position: static;
-    display: inline-flex;
-    margin-bottom: 0.9rem;
-    border-radius: var(--border-radius-sm);
-  }
-
   /* Calculator Box */
   .calculator-box {
     padding: 1.8rem 1.2rem;
