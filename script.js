@@ -153,7 +153,7 @@ function initNumberCounters() {
    ========================================================================== */
 function initPortfolioFilters() {
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
+  const projectCards = document.querySelectorAll('.project-card-v2, .project-card');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
