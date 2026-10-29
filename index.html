@@ -839,93 +839,6 @@
       </div>
     </section>
 
-    <!-- Interactive Marketing ROI & Campaign Calculator -->
-    <section class="section calculator-section" id="roi-calculator">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Interactive Marketing Tool</span>
-          <h2 class="section-title">Campaign Metric &amp; ROI Estimator</h2>
-          <p class="section-intro">
-            Test and model digital marketing campaign scenarios using industry standard CPC, CTR, conversion rates, and ROAS formulas.
-          </p>
-        </div>
-
-        <div class="calculator-box">
-          <div class="calc-inputs-col">
-            <div class="calc-field">
-              <label for="monthlyBudget">Monthly Ad Spend / Budget (₹)</label>
-              <div class="input-with-symbol">
-                <span class="symbol">₹</span>
-                <input type="number" id="monthlyBudget" value="50000" min="1000" step="1000">
-              </div>
-              <input type="range" id="monthlyBudgetRange" min="5000" max="500000" step="5000" value="50000">
-            </div>
-
-            <div class="calc-row-2">
-              <div class="calc-field">
-                <label for="avgCpc">Est. Cost Per Click (CPC ₹)</label>
-                <div class="input-with-symbol">
-                  <span class="symbol">₹</span>
-                  <input type="number" id="avgCpc" value="15" min="1" step="0.5">
-                </div>
-              </div>
-
-              <div class="calc-field">
-                <label for="convRate">Target Conversion Rate (%)</label>
-                <div class="input-with-symbol">
-                  <span class="symbol">%</span>
-                  <input type="number" id="convRate" value="3.5" min="0.1" step="0.1">
-                </div>
-              </div>
-            </div>
-
-            <div class="calc-field">
-              <label for="avgOrderValue">Average Value Per Conversion / Lead (₹)</label>
-              <div class="input-with-symbol">
-                <span class="symbol">₹</span>
-                <input type="number" id="avgOrderValue" value="2500" min="100" step="50">
-              </div>
-            </div>
-          </div>
-
-          <div class="calc-results-col">
-            <h4 class="results-heading"><i class="fa-solid fa-calculator"></i> Projected Campaign Return</h4>
-            <div class="results-grid">
-              <div class="res-item">
-                <span class="res-title">Estimated Clicks / Traffic</span>
-                <span class="res-value" id="calcClicks">3,333</span>
-              </div>
-              <div class="res-item">
-                <span class="res-title">Estimated Conversions</span>
-                <span class="res-value" id="calcConversions">116</span>
-              </div>
-              <div class="res-item">
-                <span class="res-title">Cost Per Acquisition (CPA)</span>
-                <span class="res-value" id="calcCpa">₹431</span>
-              </div>
-              <div class="res-item highlight-roas">
-                <span class="res-title">Projected Revenue</span>
-                <span class="res-value" id="calcRevenue">₹2,90,000</span>
-              </div>
-            </div>
-
-            <div class="roas-meter">
-              <div class="roas-text">
-                <span>Estimated ROAS:</span>
-                <strong id="calcRoas">5.8x</strong>
-              </div>
-              <div class="roas-bar-bg">
-                <div class="roas-bar-fill" id="roasFill" style="width: 75%;"></div>
-              </div>
-              <p class="roas-insight" id="roasInsight">
-                High-efficiency campaign projection! Positive margin buffer for scaling audience reach.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Certifications & Education Section -->
     <section class="section cert-section" id="certifications">
       <div class="container">
@@ -1009,6 +922,93 @@
             <p class="edu-desc">
               Strong technical curriculum covering database management, web technologies, computer networks, and analytical problem-solving. This technical edge empowers me to understand SEO code audits, tag managers, and data pipelines far deeper than traditional marketers.
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Marketing ROI & Campaign Calculator -->
+    <section class="section calculator-section" id="roi-calculator">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Interactive Marketing Tool</span>
+          <h2 class="section-title">Campaign Metric &amp; ROI Estimator</h2>
+          <p class="section-intro">
+            Test and model digital marketing campaign scenarios using industry standard CPC, CTR, conversion rates, and ROAS formulas.
+          </p>
+        </div>
+
+        <div class="calculator-box">
+          <div class="calc-inputs-col">
+            <div class="calc-field">
+              <label for="monthlyBudget">Monthly Ad Spend / Budget (₹)</label>
+              <div class="input-with-symbol">
+                <span class="symbol">₹</span>
+                <input type="number" id="monthlyBudget" value="50000" min="1000" step="1000">
+              </div>
+              <input type="range" id="monthlyBudgetRange" min="5000" max="500000" step="5000" value="50000">
+            </div>
+
+            <div class="calc-row-2">
+              <div class="calc-field">
+                <label for="avgCpc">Est. Cost Per Click (CPC ₹)</label>
+                <div class="input-with-symbol">
+                  <span class="symbol">₹</span>
+                  <input type="number" id="avgCpc" value="15" min="1" step="0.5">
+                </div>
+              </div>
+
+              <div class="calc-field">
+                <label for="convRate">Target Conversion Rate (%)</label>
+                <div class="input-with-symbol">
+                  <span class="symbol">%</span>
+                  <input type="number" id="convRate" value="3.5" min="0.1" step="0.1">
+                </div>
+              </div>
+            </div>
+
+            <div class="calc-field">
+              <label for="avgOrderValue">Average Value Per Conversion / Lead (₹)</label>
+              <div class="input-with-symbol">
+                <span class="symbol">₹</span>
+                <input type="number" id="avgOrderValue" value="2500" min="100" step="50">
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-results-col">
+            <h4 class="results-heading"><i class="fa-solid fa-calculator"></i> Projected Campaign Return</h4>
+            <div class="results-grid">
+              <div class="res-item">
+                <span class="res-title">Estimated Clicks / Traffic</span>
+                <span class="res-value" id="calcClicks">3,333</span>
+              </div>
+              <div class="res-item">
+                <span class="res-title">Estimated Conversions</span>
+                <span class="res-value" id="calcConversions">116</span>
+              </div>
+              <div class="res-item">
+                <span class="res-title">Cost Per Acquisition (CPA)</span>
+                <span class="res-value" id="calcCpa">₹431</span>
+              </div>
+              <div class="res-item highlight-roas">
+                <span class="res-title">Projected Revenue</span>
+                <span class="res-value" id="calcRevenue">₹2,90,000</span>
+              </div>
+            </div>
+
+            <div class="roas-meter">
+              <div class="roas-text">
+                <span>Estimated ROAS:</span>
+                <strong id="calcRoas">5.8x</strong>
+              </div>
+              <div class="roas-bar-bg">
+                <div class="roas-bar-fill" id="roasFill" style="width: 75%;"></div>
+              </div>
+              <p class="roas-insight" id="roasInsight">
+                High-efficiency campaign projection! Positive margin buffer for scaling audience reach.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1124,6 +1124,7 @@
           <li><a href="#case-studies">Campaigns</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#roi-calculator">ROI Tool</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
