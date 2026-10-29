@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModals();
   initRoiCalculator();
   initContactForm();
+  initBackToTop();
   setCurrentYear();
 });
 
@@ -408,7 +409,30 @@ function showToast(message) {
 }
 
 /* ==========================================================================
-   10. Current Year Auto Update
+   10. Back to Top Smooth Scroll
+   ========================================================================== */
+function initBackToTop() {
+  const backToTopBtn = document.getElementById('backToTop');
+  if (!backToTopBtn) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 380) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+/* ==========================================================================
+   11. Current Year Auto Update
    ========================================================================== */
 function setCurrentYear() {
   const yearSpan = document.getElementById('currentYear');
