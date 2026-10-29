@@ -1,6 +1,6 @@
 /**
  * Purav Dhanki - Digital Marketing & Operations Portfolio
- * Interactive Functionality & Dynamics
+ * Interactive Functionality, Project Filters & Real-Time Search
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initActiveNavSpy();
   initNumberCounters();
-  initPortfolioFilters();
+  initProjectFilteringAndSearch();
   initModals();
   initRoiCalculator();
   initContactForm();
@@ -73,7 +73,6 @@ function initMobileNav() {
     navMenu.classList.toggle('active');
   });
 
-  // Close menu when clicking any nav link
   const navLinks = navMenu.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -94,7 +93,7 @@ function initActiveNavSpy() {
 
     sections.forEach(current => {
       const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 120;
+      const sectionTop = current.offsetTop - 130;
       const sectionId = current.getAttribute('id');
 
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -122,7 +121,7 @@ function initNumberCounters() {
         hasAnimated = true;
         counters.forEach(counter => {
           const target = +counter.getAttribute('data-target');
-          const duration = 1800; // ms
+          const duration = 1800;
           const stepTime = 25;
           const totalSteps = duration / stepTime;
           const increment = target / totalSteps;
@@ -149,46 +148,64 @@ function initNumberCounters() {
 }
 
 /* ==========================================================================
-   6. Portfolio Filters
+   6. Project Filtering and Live Search
    ========================================================================== */
-function initPortfolioFilters() {
+function initProjectFilteringAndSearch() {
   const filterBtns = document.querySelectorAll('.filter-btn');
+  const searchInput = document.getElementById('projectSearchInput');
   const projectCards = document.querySelectorAll('.project-card');
 
+  let activeFilter = 'all';
+  let searchTerm = '';
+
+  function applyFilters() {
+    projectCards.forEach(card => {
+      const category = card.getAttribute('data-category') || '';
+      const textContent = card.textContent.toLowerCase();
+
+      const matchesFilter = (activeFilter === 'all') || (category === activeFilter);
+      const matchesSearch = searchTerm === '' || textContent.includes(searchTerm);
+
+      if (matchesFilter && matchesSearch) {
+        card.style.display = 'flex';
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 10);
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(15px)';
+        setTimeout(() => {
+          card.style.display = 'none';
+        }, 200);
+      }
+    });
+  }
+
+  // Filter Button Click Handlers
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Toggle active button
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const filterVal = btn.getAttribute('data-filter');
-
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filterVal === 'all' || category === filterVal) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 200);
-        }
-      });
+      activeFilter = btn.getAttribute('data-filter');
+      applyFilters();
     });
   });
+
+  // Search Input Handler
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchTerm = e.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+  }
 }
 
 /* ==========================================================================
-   7. Modals Management (Case Studies & Resume)
+   7. Modals Management (Deep Dives & Resume)
    ========================================================================== */
 function initModals() {
-  // Open modal buttons
-  const openButtons = document.querySelectorAll('[data-modal]');
+  const openButtons = document.querySelectorAll('.open-modal-btn');
   const resumeBtn = document.getElementById('viewResumeModalBtn');
 
   openButtons.forEach(btn => {
@@ -204,7 +221,6 @@ function initModals() {
     });
   }
 
-  // Close buttons inside modals
   const closeButtons = document.querySelectorAll('.modal-close');
   closeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -212,7 +228,6 @@ function initModals() {
     });
   });
 
-  // Close when clicking modal backdrop
   const backdrops = document.querySelectorAll('.modal-backdrop');
   backdrops.forEach(backdrop => {
     backdrop.addEventListener('click', (e) => {
@@ -222,7 +237,6 @@ function initModals() {
     });
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeAllModals();
@@ -245,11 +259,12 @@ function closeAllModals() {
 }
 
 /* ==========================================================================
-   8. Interactive Campaign ROI Calculator
+   8. Campaign ROI & Metric Calculator
    ========================================================================== */
 function initRoiCalculator() {
   const budgetInput = document.getElementById('monthlyBudget');
   const budgetRange = document.getElementById('monthlyBudgetRange');
+  const budgetDisplay = document.getElementById('budgetDisplay');
   const cpcInput = document.getElementById('avgCpc');
   const convRateInput = document.getElementById('convRate');
   const aovInput = document.getElementById('avgOrderValue');
@@ -270,30 +285,31 @@ function initRoiCalculator() {
     const convRate = parseFloat(convRateInput.value) || 0.1;
     const aov = parseFloat(aovInput.value) || 0;
 
+    if (budgetDisplay) {
+      budgetDisplay.textContent = `₹${budget.toLocaleString('en-IN')}`;
+    }
+
     const clicks = Math.round(budget / (cpc > 0 ? cpc : 1));
     const conversions = Math.round(clicks * (convRate / 100));
     const cpa = conversions > 0 ? Math.round(budget / conversions) : 0;
     const revenue = Math.round(conversions * aov);
     const roas = budget > 0 ? (revenue / budget).toFixed(1) : 0;
 
-    // Update UI numbers
     calcClicks.textContent = clicks.toLocaleString('en-IN');
     calcConversions.textContent = conversions.toLocaleString('en-IN');
     calcCpa.textContent = `₹${cpa.toLocaleString('en-IN')}`;
     calcRevenue.textContent = `₹${revenue.toLocaleString('en-IN')}`;
     calcRoas.textContent = `${roas}x`;
 
-    // Update ROAS meter width (capped at 10x for 100%)
     const meterPercentage = Math.min(Math.max((roas / 8) * 100, 10), 100);
     roasFill.style.width = `${meterPercentage}%`;
 
-    // Dynamic insight commentary
     if (roas >= 4.0) {
       roasFill.style.background = 'linear-gradient(90deg, #10b981, #06b6d4)';
-      roasInsight.textContent = 'Exceptional ROAS projection! High margin headroom for aggressive horizontal scaling across Meta and Google Search.';
+      roasInsight.textContent = 'High-efficiency campaign projection! Positive margin buffer for scaling audience reach across Google Search & Meta Ads.';
     } else if (roas >= 2.5) {
       roasFill.style.background = 'linear-gradient(90deg, #6366f1, #8b5cf6)';
-      roasInsight.textContent = 'Healthy return on ad spend. Recommend split-testing ad creatives and on-page CRO to boost conversion rates above 4%.';
+      roasInsight.textContent = 'Healthy return on ad spend. Recommend split-testing ad creatives and landing page CRO to lift conversion rates above 4%.';
     } else if (roas >= 1.0) {
       roasFill.style.background = 'linear-gradient(90deg, #f59e0b, #ea580c)';
       roasInsight.textContent = 'Moderate efficiency. Focus on lowering CPC via tighter negative keyword lists and enhancing hook retention in video assets.';
@@ -303,7 +319,6 @@ function initRoiCalculator() {
     }
   }
 
-  // Budget slider and input sync
   budgetInput.addEventListener('input', () => {
     budgetRange.value = budgetInput.value;
     updateCalculations();
@@ -342,7 +357,6 @@ function initContactForm() {
       return;
     }
 
-    // Prepare direct mailto trigger with pre-filled content
     const subject = encodeURIComponent(`Portfolio Inquiry: ${inquiry} from ${name}`);
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nInquiry Type: ${inquiry}\n\nMessage:\n${message}\n\n---\nSent via Purav Dhanki Portfolio`
@@ -383,4 +397,3 @@ function setCurrentYear() {
     yearSpan.textContent = new Date().getFullYear();
   }
 }
-
