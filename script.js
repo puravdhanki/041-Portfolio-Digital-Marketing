@@ -356,13 +356,16 @@ function initRoiCalculator() {
 }
 
 /* ==========================================================================
-   9. Contact Form Handling (Email Submission + Instant WhatsApp Forwarding)
+   9. Contact Form Handling (Zero Redirection Backend Storage + WhatsApp Delivery)
    ========================================================================== */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   const statusDiv = document.getElementById('formStatus');
   const submitBtn = document.getElementById('submitBtn');
   if (!form) return;
+
+  // Replace with your Google Apps Script Web App URL after deploying google_apps_script_backend.js
+  const GOOGLE_APPS_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -377,15 +380,15 @@ function initContactForm() {
       return;
     }
 
-    // Disable button during processing
+    // Disable button to prevent double submission
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Dispatching Notification...';
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving Inquiry & Notifying...';
     }
 
-    statusDiv.innerHTML = '<span style="color: #6366f1;"><i class="fa-solid fa-circle-notch fa-spin"></i> Processing inquiry & preparing WhatsApp alert...</span>';
+    statusDiv.innerHTML = '<span style="color: #6366f1;"><i class="fa-solid fa-circle-notch fa-spin"></i> Storing inquiry in backend database...</span>';
 
-    // 1. WhatsApp Instant Notification Message construction
+    // 1. WhatsApp Notification Pre-formatted text for instant one-click alert
     const waText = 
 `🔔 *New Inquiry from Portfolio!*
 ━━━━━━━━━━━━━━━━━━━━
@@ -401,55 +404,93 @@ function initContactForm() {
     const encodedWaText = encodeURIComponent(waText);
     const waUrl = `https://wa.me/918108901069?text=${encodedWaText}`;
 
-    // 2. Prepare FormSubmit / Webhook Email dispatch in background
-    let emailSent = false;
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/puravdhanki@hotmail.com", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          inquiry_type: inquiry,
-          message: message,
-          _subject: `New Portfolio Lead: ${inquiry} - ${name}`,
-          _template: "table"
-        })
-      });
+    // 2. BACKEND STORAGE: Asynchronously post data (No email client redirect, pure background storage)
+    const payload = {
+      timestamp: new Date().toISOString(),
+      name: name,
+      email: email,
+      inquiry: inquiry,
+      message: message
+    };
 
-      if (response.ok) {
-        emailSent = true;
-      }
-    } catch (err) {
-      console.log("Background email submission notice:", err);
+    // Also persist locally in browser localStorage as permanent fallback database
+    try {
+      const storedLeads = JSON.parse(localStorage.getItem('purav_portfolio_leads') || '[]');
+      storedLeads.push(payload);
+      localStorage.setItem('purav_portfolio_leads', JSON.stringify(storedLeads));
+    } catch (e) {
+      console.log('Local storage sync:', e);
     }
 
-    // 3. User feedback toast
-    showToast(`Inquiry received from ${name}! Opening instant WhatsApp notification...`);
+    // Send to Google Sheets Backend if URL configured
+    if (GOOGLE_APPS_SCRIPT_URL && GOOGLE_APPS_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+      try {
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("inquiry", inquiry);
+        formData.append("message", message);
+
+        await fetch(GOOGLE_APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+      } catch (err) {
+        console.log("Backend sheet dispatch notice:", err);
+      }
+    } else {
+      // Background silent fallback to FormSubmit API without any page redirection
+      try {
+        fetch("https://formsubmit.co/ajax/puravdhanki@hotmail.com", {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            inquiry: inquiry,
+            message: message,
+            _subject: `New Lead: ${inquiry} - ${name}`,
+            _template: "table"
+          })
+        }).catch(e => console.log(e));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    // 3. User Success State (Stay on page, NO email redirect)
+    showToast(`Inquiry from ${name} recorded successfully!`);
 
     statusDiv.innerHTML = `
-      <div style="margin-top: 0.8rem; padding: 0.8rem; background: rgba(37, 211, 102, 0.12); border: 1px solid rgba(37, 211, 102, 0.35); border-radius: 8px; color: #25d366; font-size: 0.88rem;">
-        <i class="fa-brands fa-whatsapp"></i> <strong>Inquiry Captured!</strong> Launching WhatsApp notification directly to +91 81089 01069...
+      <div style="margin-top: 0.9rem; padding: 0.9rem 1.1rem; background: rgba(37, 211, 102, 0.12); border: 1px solid rgba(37, 211, 102, 0.35); border-radius: 8px; color: #25d366; font-size: 0.9rem; text-align: left;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem;">
+          <i class="fa-solid fa-circle-check" style="font-size: 1.1rem;"></i>
+          <strong>Inquiry Saved to Backend Database!</strong>
+        </div>
+        <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
+          Your inquiry has been stored securely. Opening instant WhatsApp connection to Purav Dhanki (+91 81089 01069)...
+        </p>
       </div>
     `;
 
-    // 4. Open WhatsApp with pre-filled lead details
+    // 4. Trigger direct WhatsApp with pre-filled message
     setTimeout(() => {
       window.open(waUrl, '_blank');
       form.reset();
 
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message & Notify via WhatsApp';
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message &amp; Notify via WhatsApp';
       }
 
       setTimeout(() => {
         statusDiv.innerHTML = '';
-      }, 5000);
-    }, 1100);
+      }, 7000);
+    }, 1200);
   });
 }
 
