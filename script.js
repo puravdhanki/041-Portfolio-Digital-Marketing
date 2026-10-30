@@ -356,7 +356,7 @@ function initRoiCalculator() {
 }
 
 /* ==========================================================================
-   9. Contact Form Handling (Zero Redirection Backend Storage + WhatsApp Delivery)
+   9. Contact Form Handling (Instant Direct WhatsApp Delivery + Silent Background Backup)
    ========================================================================== */
 function initContactForm() {
   const form = document.getElementById('contactForm');
@@ -364,10 +364,7 @@ function initContactForm() {
   const submitBtn = document.getElementById('submitBtn');
   if (!form) return;
 
-  // Replace with your Google Apps Script Web App URL after deploying google_apps_script_backend.js
-  const GOOGLE_APPS_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
-
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const name = document.getElementById('senderName').value.trim();
@@ -380,17 +377,9 @@ function initContactForm() {
       return;
     }
 
-    // Disable button to prevent double submission
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving Inquiry & Notifying...';
-    }
-
-    statusDiv.innerHTML = '<span style="color: #6366f1;"><i class="fa-solid fa-circle-notch fa-spin"></i> Storing inquiry in backend database...</span>';
-
-    // 1. WhatsApp Notification Pre-formatted text for instant one-click alert
+    // 1. Format clean, readable WhatsApp alert message
     const waText = 
-`🔔 *New Inquiry from Portfolio!*
+`🔔 *New Inquiry from Portfolio Website!*
 ━━━━━━━━━━━━━━━━━━━━
 👤 *Name:* ${name}
 ✉️ *Email:* ${email}
@@ -399,100 +388,108 @@ function initContactForm() {
 💬 *Message:*
 "${message}"
 ━━━━━━━━━━━━━━━━━━━━
-📱 *Sent via:* puravdhanki.github.io/Purav-Portfolio/`;
+📱 *Portfolio:* Purav Dhanki - Digital Marketing & Content Operations`;
 
     const encodedWaText = encodeURIComponent(waText);
     const waUrl = `https://wa.me/918108901069?text=${encodedWaText}`;
 
-    // 2. BACKEND STORAGE: Asynchronously post data (No email client redirect, pure background storage)
+    // 2. Local Storage Persistence (Always saved in browser database)
     const payload = {
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
       name: name,
       email: email,
       inquiry: inquiry,
       message: message
     };
 
-    // Also persist locally in browser localStorage as permanent fallback database
     try {
       const storedLeads = JSON.parse(localStorage.getItem('purav_portfolio_leads') || '[]');
       storedLeads.push(payload);
       localStorage.setItem('purav_portfolio_leads', JSON.stringify(storedLeads));
-    } catch (e) {
-      console.log('Local storage sync:', e);
+    } catch (err) {
+      console.log('LocalStorage save:', err);
     }
 
-    // Send to Google Sheets Backend if URL configured
-    if (GOOGLE_APPS_SCRIPT_URL && GOOGLE_APPS_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
-      try {
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("email", email);
-        formData.append("inquiry", inquiry);
-        formData.append("message", message);
-
-        await fetch(GOOGLE_APPS_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          body: formData
-        });
-      } catch (err) {
-        console.log("Backend sheet dispatch notice:", err);
-      }
-    } else {
-      // Background silent fallback to FormSubmit API without any page redirection
-      try {
-        fetch("https://formsubmit.co/ajax/puravdhanki@hotmail.com", {
-          method: "POST",
-          headers: { 
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            inquiry: inquiry,
-            message: message,
-            _subject: `New Lead: ${inquiry} - ${name}`,
-            _template: "table"
-          })
-        }).catch(e => console.log(e));
-      } catch (err) {
-        console.log(err);
-      }
+    // 3. Silent Background Email Dispatch (Backup via FormSubmit without any page redirect)
+    try {
+      fetch("https://formsubmit.co/ajax/puravdhanki@hotmail.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          inquiry: inquiry,
+          message: message,
+          _subject: `New Lead: ${inquiry} - ${name}`,
+          _template: "table"
+        })
+      }).catch(err => console.log("Silent email notification backup:", err));
+    } catch (err) {
+      console.log(err);
     }
 
-    // 3. User Success State (Stay on page, NO email redirect)
-    showToast(`Inquiry from ${name} recorded successfully!`);
+    // 4. Update UI State
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Redirecting to WhatsApp...';
+    }
+
+    showToast(`Thank you, ${name}! Redirecting to WhatsApp...`);
 
     statusDiv.innerHTML = `
-      <div style="margin-top: 0.9rem; padding: 0.9rem 1.1rem; background: rgba(37, 211, 102, 0.12); border: 1px solid rgba(37, 211, 102, 0.35); border-radius: 8px; color: #25d366; font-size: 0.9rem; text-align: left;">
-        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem;">
-          <i class="fa-solid fa-circle-check" style="font-size: 1.1rem;"></i>
-          <strong>Inquiry Saved to Backend Database!</strong>
+      <div style="margin-top: 0.9rem; padding: 1rem 1.2rem; background: rgba(37, 211, 102, 0.12); border: 1px solid rgba(37, 211, 102, 0.35); border-radius: 10px; color: #25d366; font-size: 0.9rem; text-align: left;">
+        <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem;">
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i>
+          <strong style="color: #25d366;">Connecting to WhatsApp...</strong>
         </div>
-        <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
-          Your inquiry has been stored securely. Opening instant WhatsApp connection to Purav Dhanki (+91 81089 01069)...
+        <p style="margin: 0 0 0.8rem 0; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+          Your inquiry has been prepared with your details. Click below if WhatsApp did not open automatically:
         </p>
+        <a href="${waUrl}" target="_blank" class="btn btn-sm" style="background: #25d366; color: #ffffff; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 600; border-radius: 6px; padding: 0.45rem 1rem;">
+          <i class="fa-brands fa-whatsapp"></i> Open WhatsApp Now
+        </a>
       </div>
     `;
 
-    // 4. Trigger direct WhatsApp with pre-filled message
-    setTimeout(() => {
-      window.open(waUrl, '_blank');
-      form.reset();
+    // 5. Open WhatsApp directly in new window/app
+    const waWindow = window.open(waUrl, '_blank');
+    if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
+      // If popup blocker intervened, redirect current tab or user clicks the green button above
+      window.location.href = waUrl;
+    }
 
+    form.reset();
+
+    setTimeout(() => {
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message &amp; Notify via WhatsApp';
       }
-
-      setTimeout(() => {
-        statusDiv.innerHTML = '';
-      }, 7000);
-    }, 1200);
+    }, 3000);
   });
 }
+
+// Global helper function to export all inquiries stored in browser anytime
+window.exportLeadsToCsv = function() {
+  const leads = JSON.parse(localStorage.getItem('purav_portfolio_leads') || '[]');
+  if (leads.length === 0) {
+    alert("No inquiries recorded yet.");
+    return;
+  }
+  let csv = "Timestamp,Name,Email,Inquiry,Message\n";
+  leads.forEach(l => {
+    csv += `"${l.timestamp}","${l.name}","${l.email}","${l.inquiry}","${(l.message || '').replace(/"/g, '""')}"\n`;
+  });
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `Portfolio_Leads_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+};
 
 function showToast(message) {
   const toast = document.getElementById('toastNotification');
