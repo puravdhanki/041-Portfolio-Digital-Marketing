@@ -2621,6 +2621,18 @@ body.light-theme .timeline-tags span {
   text-align: center;
 }
 
+.form-delivery-guarantee {
+  margin-top: 0.9rem;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+body.light-theme .form-delivery-guarantee {
+  color: #64748b;
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */

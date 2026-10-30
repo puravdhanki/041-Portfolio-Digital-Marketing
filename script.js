@@ -356,14 +356,15 @@ function initRoiCalculator() {
 }
 
 /* ==========================================================================
-   9. Contact Form Handling
+   9. Contact Form Handling (Email Submission + Instant WhatsApp Forwarding)
    ========================================================================== */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   const statusDiv = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = document.getElementById('senderName').value.trim();
@@ -372,26 +373,83 @@ function initContactForm() {
     const message = document.getElementById('senderMessage').value.trim();
 
     if (!name || !email || !message) {
-      statusDiv.innerHTML = '<span style="color: #ef4444;">Please fill in all required fields.</span>';
+      statusDiv.innerHTML = '<span style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i> Please fill in all required fields.</span>';
       return;
     }
 
-    // Prepare direct mailto trigger with pre-filled content
-    const subject = encodeURIComponent(`Portfolio Inquiry: ${inquiry} from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nInquiry Type: ${inquiry}\n\nMessage:\n${message}\n\n---\nSent via Purav Dhanki Portfolio`
-    );
+    // Disable button during processing
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Dispatching Notification...';
+    }
 
-    const mailtoLink = `mailto:puravdhanki@hotmail.com?subject=${subject}&body=${body}`;
+    statusDiv.innerHTML = '<span style="color: #6366f1;"><i class="fa-solid fa-circle-notch fa-spin"></i> Processing inquiry & preparing WhatsApp alert...</span>';
 
-    showToast(`Thank you, ${name}! Opening email client to send your message...`);
-    statusDiv.innerHTML = '<span style="color: #10b981;"><i class="fa-solid fa-check"></i> Preparing your message...</span>';
+    // 1. WhatsApp Instant Notification Message construction
+    const waText = 
+`🔔 *New Inquiry from Portfolio!*
+━━━━━━━━━━━━━━━━━━━━
+👤 *Name:* ${name}
+✉️ *Email:* ${email}
+🎯 *Inquiry Type:* ${inquiry}
 
+💬 *Message:*
+"${message}"
+━━━━━━━━━━━━━━━━━━━━
+📱 *Sent via:* puravdhanki.github.io/Purav-Portfolio/`;
+
+    const encodedWaText = encodeURIComponent(waText);
+    const waUrl = `https://wa.me/918108901069?text=${encodedWaText}`;
+
+    // 2. Prepare FormSubmit / Webhook Email dispatch in background
+    let emailSent = false;
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/puravdhanki@hotmail.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          inquiry_type: inquiry,
+          message: message,
+          _subject: `New Portfolio Lead: ${inquiry} - ${name}`,
+          _template: "table"
+        })
+      });
+
+      if (response.ok) {
+        emailSent = true;
+      }
+    } catch (err) {
+      console.log("Background email submission notice:", err);
+    }
+
+    // 3. User feedback toast
+    showToast(`Inquiry received from ${name}! Opening instant WhatsApp notification...`);
+
+    statusDiv.innerHTML = `
+      <div style="margin-top: 0.8rem; padding: 0.8rem; background: rgba(37, 211, 102, 0.12); border: 1px solid rgba(37, 211, 102, 0.35); border-radius: 8px; color: #25d366; font-size: 0.88rem;">
+        <i class="fa-brands fa-whatsapp"></i> <strong>Inquiry Captured!</strong> Launching WhatsApp notification directly to +91 81089 01069...
+      </div>
+    `;
+
+    // 4. Open WhatsApp with pre-filled lead details
     setTimeout(() => {
-      window.location.href = mailtoLink;
+      window.open(waUrl, '_blank');
       form.reset();
-      statusDiv.innerHTML = '';
-    }, 1200);
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message & Notify via WhatsApp';
+      }
+
+      setTimeout(() => {
+        statusDiv.innerHTML = '';
+      }, 5000);
+    }, 1100);
   });
 }
 
