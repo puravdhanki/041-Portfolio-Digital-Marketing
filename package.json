@@ -1,0 +1,23 @@
+{
+  "name": "purav-portfolio",
+  "version": "1.0.0",
+  "description": "A high-converting, modern, and responsive portfolio engineered specifically for Digital Marketing, Social Media Operations, SEO, and AI-Assisted Workflow Strategy.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puravdhanki/041-Portfolio-Digital-Marketing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/puravdhanki/041-Portfolio-Digital-Marketing/issues"
+  },
+  "homepage": "https://github.com/puravdhanki/041-Portfolio-Digital-Marketing#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
