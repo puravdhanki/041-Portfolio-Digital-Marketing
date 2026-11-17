@@ -52,7 +52,6 @@ Plain **HTML5, CSS3 and vanilla JavaScript**. No framework, no build step.
 
 - Fonts: Geist & Geist Mono (Google Fonts)
 - Icons: Font Awesome 6 + brand logos from [Simple Icons](https://simpleicons.org/) (stored locally in `assets/icons/`)
-- Contact form backend: optional Google Apps Script template (`google_apps_script_backend.js`)
 
 ## Project structure
 
@@ -63,9 +62,8 @@ Plain **HTML5, CSS3 and vanilla JavaScript**. No framework, no build step.
 ├── theme-pro.css                   # SaaS theme layer: colors, type, cards, nav, motion, responsive fixes
 ├── script.js                       # Theme toggle, mobile menu, scroll reveal, counters, calculator, form
 ├── assets/icons/                   # Brand SVG logos (Simple Icons)
-├── google_apps_script_backend.js   # Optional Google Sheets lead-capture backend
-├── Purav_Dhanki_Resume.pdf         # Downloadable resume
-├── Purav_Dhanki_Resume.docx
+├── Purav_Dhanki_Resume.pdf         # Downloadable resume (PDF)
+├── Purav_Dhanki_Resume.docx        # Downloadable resume (Word)
 └── README.md
 ```
 
