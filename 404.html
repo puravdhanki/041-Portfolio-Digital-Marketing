@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found | Purav Dhanki</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#ffffff; --ink:#09090b; --muted:#71717a; --line:#e4e4e7; --accent:#0d7a68; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#09090b; --ink:#fafafa; --muted:#a1a1aa; --line:#27272a; --accent:#34d3b4; } }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 1.5rem;
+      background: var(--bg); color: var(--ink); font-family: Geist, "Segoe UI", system-ui, sans-serif; text-align: center;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px; background-position: center;
+    }
+    main { background: var(--bg); padding: 2.5rem 2rem; border: 1px solid var(--line); border-radius: 16px; max-width: 440px; width: 100%; }
+    .code { font-family: "Geist Mono", ui-monospace, monospace; color: var(--accent); font-size: .85rem; letter-spacing: .08em; }
+    h1 { font-size: clamp(1.6rem, 5vw, 2.1rem); margin: .6rem 0 .5rem; letter-spacing: -.02em; }
+    p { color: var(--muted); line-height: 1.6; }
+    a { display: inline-block; margin-top: 1.5rem; padding: .7rem 1.2rem; border-radius: 10px; background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 600; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="code">ERROR 404</div>
+    <h1>This page doesn't exist</h1>
+    <p>The link may be old or mistyped. Everything about my work is on the homepage.</p>
+    <a href="/">Back to portfolio</a>
+  </main>
+</body>
+</html>

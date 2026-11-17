@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initHeaderScroll();
   initMobileNav();
+  const printBtn = document.getElementById('printResumeBtn');
+  if (printBtn) printBtn.addEventListener('click', () => window.print());
   initActiveNavSpy();
   initNumberCounters();
   initPortfolioFilters();
@@ -497,7 +499,7 @@ function initContactForm() {
         <p style="margin: 0 0 0.8rem 0; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
           Your inquiry has been prepared with your details. Click below if WhatsApp did not open automatically:
         </p>
-        <a href="${waUrl}" target="_blank" class="btn btn-sm" style="background: #25d366; color: #ffffff; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 600; border-radius: 6px; padding: 0.45rem 1rem;">
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm" style="background: #25d366; color: #ffffff; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 600; border-radius: 6px; padding: 0.45rem 1rem;">
           <i class="fa-brands fa-whatsapp"></i> Open WhatsApp Now
         </a>
       </div>

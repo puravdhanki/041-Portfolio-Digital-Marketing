@@ -36,6 +36,19 @@ Personal portfolio of **Purav Dhanki**, Digital Marketing & Operations professio
 - Subtle motion: hero entrance, scroll reveal, hover lift. Motion is disabled for visitors who prefer reduced motion.
 - Fully responsive from 320px phones to wide desktops; full-screen mobile menu below 1100px.
 - Accessible focus states, ARIA labels on icon links and the menu toggle.
+- Custom "PD" monogram favicon and home-screen icon.
+
+## SEO
+
+- Keyword-focused `<title>` and meta description, canonical URL, `robots` meta.
+- Open Graph + Twitter/X cards with a 1200×630 share image (`assets/og-image.png`), so links look good on WhatsApp, LinkedIn, X and Facebook.
+- JSON-LD structured data: `Person` (with `sameAs` social profiles), `ProfilePage` and `WebSite`.
+- `robots.txt`, `sitemap.xml`, custom `404.html`, single `<h1>` with name + role, semantic sections.
+
+## Security
+
+- Strict security headers via `vercel.json`: Content-Security-Policy (scripts only from this site), HSTS, `X-Frame-Options: DENY`, `nosniff`, Referrer-Policy, Permissions-Policy.
+- No inline scripts, no API keys or secrets in the code; external links use `rel="noopener"`.
 
 ## Social profiles
 
@@ -61,7 +74,15 @@ Plain **HTML5, CSS3 and vanilla JavaScript**. No framework, no build step.
 ├── style.css                       # Base layout and component styles
 ├── theme-pro.css                   # SaaS theme layer: colors, type, cards, nav, motion, responsive fixes
 ├── script.js                       # Theme toggle, mobile menu, scroll reveal, counters, calculator, form
-├── assets/icons/                   # Brand SVG logos (Simple Icons)
+├── favicon.svg                     # "PD" monogram favicon (adapts to light/dark browser UI)
+├── site.webmanifest                # App name + home-screen icons
+├── favicon.ico                     # Fallback favicon for older browsers/crawlers
+├── 404.html                        # Custom "page not found" page
+├── robots.txt                      # Crawler rules + sitemap location
+├── sitemap.xml                     # Pages submitted to Google/Bing
+├── vercel.json                     # Security headers, caching, clean URLs
+├── assets/                         # Favicon/home-screen PNGs, og-image.png (social share card)
+│   └── icons/                      # Brand SVG logos (Simple Icons)
 ├── Purav_Dhanki_Resume.pdf         # Downloadable resume (PDF)
 ├── Purav_Dhanki_Resume.docx        # Downloadable resume (Word)
 └── README.md
