@@ -1,85 +1,109 @@
-# Purav Dhanki - Digital Marketing & Operations Portfolio
+# Purav Dhanki — Digital Marketing & Operations Portfolio
 
-A high-converting, modern, and responsive portfolio engineered specifically for **Digital Marketing**, **Social Media Operations**, **SEO**, and **AI-Assisted Workflow Strategy**.
+Personal portfolio of **Purav Dhanki**, Digital Marketing & Operations professional based in Mumbai. Built as a fast, dependency-free static site and deployed on Vercel.
 
----
+[![Live on Vercel](https://img.shields.io/badge/Live-purav--portfolio--one.vercel.app-000000?logo=vercel&logoColor=white)](https://purav-portfolio-one.vercel.app/)
+[![GitHub repo](https://img.shields.io/badge/GitHub-041--Portfolio--Digital--Marketing-181717?logo=github)](https://github.com/puravdhanki/041-Portfolio-Digital-Marketing)
 
-## 🌟 Key Features
-
-1. **Strategic Digital Marketing Positioning**:
-   - Showcases leadership of **80+ team members** across video editing and social media operations at PulseX Media Solutions.
-   - Highlights the **Best Performance Award (August 2025)** at Epicenter Technologies.
-   - Distinct fusion of technical acumen (**B.Sc. in IT** from University of Mumbai) and digital marketing expertise (**IIDE** and **Simplilearn Prompt Engineering** certified).
-
-2. **Interactive Campaign Case Studies & Strategy Breakdowns**:
-   - **Operations & Content Pod Management**: Framework for scaling 80+ media specialists with QA checklists.
-   - **On-Page SEO Architecture & Keyword Siloing**: Intent-based keyword mapping and site structure optimization.
-   - **Full-Funnel Paid Advertising Blueprint**: Multi-tier Meta & Google Ads acquisition funnel.
-   - **AI-Powered Rapid Ideation Machine**: Prompt engineering frameworks slashing copy and script creation turnaround.
-
-3. **Interactive Campaign ROI & ROAS Estimator**:
-   - Live interactive calculator that models Ad Spend, CPC, Conversion Rates, CPA, and Return on Ad Spend (ROAS) with dynamic feedback meters.
-
-4. **Interactive Full Resume Modal**:
-   - Formatted in an executive document style with one-click **Print / Save as PDF** support.
-
-5. **Direct Client & Recruiter Conversion Funnels**:
-   - One-click WhatsApp direct chat link.
-   - Direct phone call and email triggers.
-   - Interactive contact form with mailto fallback and toast notifications.
-
-6. **Modern Agency Tech Stack & Styling**:
-   - Dark/Light mode switcher with persistent preference in `localStorage`.
-   - Sleek glassmorphism, animated ambient gradient mesh, and subtle micro-interactions.
-   - Pure HTML5, modern CSS3, and vanilla JavaScript (zero heavy dependencies for 100/100 Google PageSpeed scores).
-   - Fully responsive across mobile, tablet, laptop, and ultra-wide screens.
+| | |
+|---|---|
+| **Live site** | https://purav-portfolio-one.vercel.app/ |
+| **Source code** | https://github.com/puravdhanki/041-Portfolio-Digital-Marketing |
+| **Hosting** | Vercel project `purav-portfolio`, connected to this repo |
 
 ---
 
-## 🚀 How to Deploy to GitHub Pages
+## What's on the site
 
-The portfolio is structured to be published directly to Purav's GitHub Pages domain (`puravdhanki.github.io/Purav-Portfolio/`):
+- **Hero & profile** — role summary, availability status, quick contact and social profiles.
+- **Skills** — four capability pillars:
+  - Content & Video Production Ops (incl. Video Quality Control / QC)
+  - SEO & Organic Traffic Strategy
+  - Performance Marketing & Paid Ads (Meta Ads, Google Ads) — *currently learning*
+  - AI Marketing & Productivity
+- **Toolkit** — brand-logo grids for the AI tools I use (ChatGPT, Gemini, Claude, Copilot, Perplexity, Canva AI, Midjourney, CapCut AI, Meta AI, Grammarly, ElevenLabs) and the social platforms I manage (Instagram, Facebook, YouTube, LinkedIn, X, Threads, WhatsApp Business, Pinterest, Snapchat, Telegram).
+- **Featured project** — *Large-Scale Video & Social Media Content Engine* (PulseX Media): 80+ member team, task allocation, 12-point QA/QC, 100% on-time delivery.
+- **Experience** — Operations Team Leader (PulseX Media Solutions) and Customer Operations (Epicenter Technologies, Best Performer Aug 2025).
+- **Certifications & education** — IIDE, Simplilearn (Prompt Engineering with GitHub Copilot), Office Master & Be10x, Great Learning; B.Sc. IT (University of Mumbai).
+- **ROI / ROAS calculator** — interactive campaign estimator.
+- **Contact** — email, phone, WhatsApp, contact form and social links.
+- **Resume** — in-page resume viewer plus PDF download.
 
-1. **Initialize Git repository in this folder**:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: initial release of modern digital marketing portfolio"
-   ```
+## Design & UX
 
-2. **Connect to your GitHub repository**:
-   ```bash
-   git branch -M main
-   git remote add origin https://github.com/puravdhanki/Purav-Portfolio.git
-   git push -u origin main
-   ```
+- Clean SaaS-style UI: Geist typeface, zinc neutrals, one teal accent, soft layered card shadows.
+- Light theme by default with a dark mode toggle (remembered per visitor).
+- Subtle motion: hero entrance, scroll reveal, hover lift. Motion is disabled for visitors who prefer reduced motion.
+- Fully responsive from 320px phones to wide desktops; full-screen mobile menu below 1100px.
+- Accessible focus states, ARIA labels on icon links and the menu toggle.
 
-3. **Enable GitHub Pages**:
-   - Go to your repository on GitHub: `https://github.com/puravdhanki/Purav-Portfolio`
-   - Navigate to **Settings** > **Pages**
-   - Under **Build and deployment > Source**, select `Deploy from a branch`
-   - Set the branch to `main` and folder to `/ (root)`
-   - Click **Save**
-   - Your portfolio will be live at `https://puravdhanki.github.io/Purav-Portfolio/`
+## Social profiles
+
+- LinkedIn — [linkedin.com/in/purav-dhanki](https://www.linkedin.com/in/purav-dhanki/)
+- Instagram — [@puravdhanki](https://www.instagram.com/puravdhanki/) · [@purav.verse](https://www.instagram.com/purav.verse/)
+- Facebook — [Purav Dhanki](https://www.facebook.com/purav.dhanki.96)
+- GitHub — [puravdhanki](https://github.com/puravdhanki)
 
 ---
 
-## 📁 Project Structure
+## Tech stack
+
+Plain **HTML5, CSS3 and vanilla JavaScript**. No framework, no build step.
+
+- Fonts: Geist & Geist Mono (Google Fonts)
+- Icons: Font Awesome 6 + brand logos from [Simple Icons](https://simpleicons.org/) (stored locally in `assets/icons/`)
+- Contact form backend: optional Google Apps Script template (`google_apps_script_backend.js`)
+
+## Project structure
 
 ```
 041 Portfolio Digital Marketing/
-├── index.html       # Semantic HTML5 architecture with schema & SEO meta tags
-├── style.css        # Responsive styling, CSS variables, dark/light theme, print rules
-├── script.js        # Interactive calculator, modals, number counters, theme toggle
-└── README.md        # Documentation and deployment instructions
+├── index.html                      # Page markup, SEO/Open Graph meta, all sections & modals
+├── style.css                       # Base layout and component styles
+├── theme-pro.css                   # SaaS theme layer: colors, type, cards, nav, motion, responsive fixes
+├── script.js                       # Theme toggle, mobile menu, scroll reveal, counters, calculator, form
+├── assets/icons/                   # Brand SVG logos (Simple Icons)
+├── google_apps_script_backend.js   # Optional Google Sheets lead-capture backend
+├── Purav_Dhanki_Resume.pdf         # Downloadable resume
+├── Purav_Dhanki_Resume.docx
+└── README.md
 ```
 
 ---
 
-## 👤 Contact Details
-- **Name**: Purav Dhanki
-- **Location**: Mira Road, Mumbai, Maharashtra
-- **Email**: puravdhanki@hotmail.com
-- **Phone**: +91 81089 01069
-- **Portfolio**: [puravdhanki.github.io/Purav-Portfolio/](https://puravdhanki.github.io/Purav-Portfolio/)
+## Run locally
 
+Any static file server works. For example:
+
+```bash
+npx http-server -p 8080 -c-1
+```
+
+Then open http://localhost:8080.
+
+## Deployment (GitHub → Vercel)
+
+The Vercel project **`purav-portfolio`** is connected to this GitHub repository with **`main`** as the production branch.
+
+- **Push to `main`** → Vercel automatically builds and deploys to production at https://purav-portfolio-one.vercel.app/
+- **Push any other branch / open a pull request** → Vercel creates a preview deployment with its own URL.
+
+Typical workflow:
+
+```bash
+git add .
+git commit -m "Describe your change"
+git push origin main
+```
+
+Vercel settings: Framework preset **Other**, no build command, output directory **`.`** (repository root).
+
+---
+
+## Contact
+
+- **Name:** Purav Dhanki
+- **Location:** Mira Road, Mumbai, Maharashtra
+- **Email:** puravdhanki@hotmail.com
+- **Phone / WhatsApp:** +91 81089 01069
+- **Portfolio:** https://purav-portfolio-one.vercel.app/

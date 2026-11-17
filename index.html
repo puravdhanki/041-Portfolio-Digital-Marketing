@@ -12,19 +12,21 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Purav Dhanki | Digital Marketing Strategist & Content Operations Leader">
   <meta property="og:description" content="Managed 80+ team members across video editing & social media ops. Certified in AI Prompt Engineering, Digital Marketing (IIDE), and B.Sc. IT.">
-  <meta property="og:url" content="https://puravdhanki.github.io/Purav-Portfolio/">
+  <meta property="og:url" content="https://purav-portfolio-one.vercel.app/">
+  <link rel="canonical" href="https://purav-portfolio-one.vercel.app/">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theme-pro.css">
 </head>
-<body class="dark-theme">
+<body class="light-theme">
   <!-- Background Glow & Grid Canvas -->
   <div class="bg-mesh">
     <div class="mesh-blob blob-1"></div>
@@ -49,6 +51,21 @@
           <li><a href="#certifications" class="nav-link">Certifications</a></li>
           <li><a href="#roi-calculator" class="nav-link">ROI Tool</a></li>
         </ul>
+
+        <!-- Shown only inside the mobile menu -->
+        <div class="nav-menu-footer">
+          <div class="nav-menu-ctas">
+            <a href="#contact" class="btn btn-primary nav-cta-link"><i class="fa-solid fa-paper-plane"></i> Let's Connect</a>
+            <a href="Purav_Dhanki_Resume.pdf" download="Purav_Dhanki_Resume.pdf" class="btn btn-outline"><i class="fa-solid fa-download"></i> Resume</a>
+          </div>
+          <div class="nav-menu-socials">
+            <a href="https://www.linkedin.com/in/purav-dhanki/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="--brand: #0a66c2; --icon: url('assets/icons/linkedin.svg');"><i class="si" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/puravdhanki/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @puravdhanki" style="--brand: #e4405f; --icon: url('assets/icons/instagram.svg');"><i class="si" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/purav.dhanki.96" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="--brand: #0866ff; --icon: url('assets/icons/facebook.svg');"><i class="si" aria-hidden="true"></i></a>
+            <a href="https://github.com/puravdhanki" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="--brand: var(--text-main); --icon: url('assets/icons/github.svg');"><i class="si" aria-hidden="true"></i></a>
+            <a href="https://wa.me/918108901069" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="--brand: #25d366; --icon: url('assets/icons/whatsapp.svg');"><i class="si" aria-hidden="true"></i></a>
+          </div>
+        </div>
       </nav>
 
       <div class="header-actions">
@@ -58,7 +75,7 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
           <i class="fa-solid fa-moon"></i>
         </button>
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
           <span></span>
           <span></span>
           <span></span>
@@ -118,6 +135,14 @@
               <i class="fa-solid fa-location-dot"></i> Mira Road, Mumbai
             </span>
           </div>
+
+          <div class="hero-socials" aria-label="Social profiles">
+            <a href="https://www.linkedin.com/in/purav-dhanki/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Purav Dhanki" title="LinkedIn" style="--brand: #0a66c2; --icon: url('assets/icons/linkedin.svg');"><i class="si" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/purav.dhanki.96" target="_blank" rel="noopener noreferrer" aria-label="Facebook Purav Dhanki" title="Facebook" style="--brand: #0866ff; --icon: url('assets/icons/facebook.svg');"><i class="si" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/puravdhanki/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @puravdhanki" title="Instagram @puravdhanki" style="--brand: #e4405f; --icon: url('assets/icons/instagram.svg');"><i class="si" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/purav.verse/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @purav.verse" title="Instagram @purav.verse" style="--brand: #e4405f; --icon: url('assets/icons/instagram.svg');"><i class="si" aria-hidden="true"></i></a>
+            <a href="https://github.com/puravdhanki" target="_blank" rel="noopener noreferrer" aria-label="GitHub puravdhanki" title="GitHub puravdhanki" style="--brand: var(--text-main); --icon: url('assets/icons/github.svg');"><i class="si" aria-hidden="true"></i></a>
+          </div>
         </div>
 
         <div class="hero-visual">
@@ -131,7 +156,7 @@
               <p class="profile-role">Digital Marketing &amp; Ops Specialist</p>
               
               <div class="badge-pills">
-                <span class="pill"><i class="fa-solid fa-bullhorn"></i> Performance Ads</span>
+                <span class="pill"><i class="fa-solid fa-bullhorn"></i> Learning: Meta &amp; Google Ads</span>
                 <span class="pill"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO &amp; GA4</span>
                 <span class="pill"><i class="fa-solid fa-robot"></i> Generative AI</span>
                 <span class="pill"><i class="fa-solid fa-users-gear"></i> 80+ Team Ops</span>
@@ -324,6 +349,7 @@
             <div class="skill-items-group">
               <span class="skill-tag">Video Editing Pipelines</span>
               <span class="skill-tag">Task &amp; Shift Allocation</span>
+              <span class="skill-tag">Video Quality Control (QC)</span>
               <span class="skill-tag">12-Point QA Checklist</span>
               <span class="skill-tag">Short-Form Hooks (Reels/Shorts)</span>
               <span class="skill-tag">Editorial Calendars</span>
@@ -364,7 +390,8 @@
           </div>
 
           <!-- Pillar 3: Performance Marketing & Paid Acquisition -->
-          <div class="skill-card-v2">
+          <div class="skill-card-v2 learning-card">
+            <span class="learning-badge"><span class="learning-dot" aria-hidden="true"></span>Currently learning</span>
             <div class="skill-card-header">
               <div class="skill-icon-v2">
                 <i class="fa-solid fa-bullseye"></i>
@@ -375,15 +402,15 @@
               </div>
             </div>
             <p class="skill-desc-v2">
-              Constructing full-funnel ad campaigns across Meta and Google, testing high-converting creative angles, refining audience segmentation, and maximizing ROAS.
+              Actively learning and building hands-on skills in performance marketing: setting up Meta Ads and Google Ads campaigns, structuring funnels, testing creatives, and reading ROAS and CPA to improve results.
             </p>
             <div class="skill-items-group">
-              <span class="skill-tag">Full-Funnel (TOFU/MOFU/BOFU)</span>
               <span class="skill-tag">Meta Ads Manager</span>
-              <span class="skill-tag">Google Search &amp; Display</span>
+              <span class="skill-tag">Google Ads (Search &amp; Display)</span>
+              <span class="skill-tag">Full-Funnel (TOFU/MOFU/BOFU)</span>
               <span class="skill-tag">Ad Copy &amp; Hook Testing</span>
-              <span class="skill-tag">Audience Retargeting</span>
-              <span class="skill-tag">ROAS &amp; CPA Optimization</span>
+              <span class="skill-tag">Audience Targeting &amp; Retargeting</span>
+              <span class="skill-tag">ROAS &amp; CPA Basics</span>
             </div>
             <div class="skill-footer-stack">
               <span class="stack-label">Tools &amp; Platforms:</span>
@@ -415,8 +442,115 @@
             </div>
             <div class="skill-footer-stack">
               <span class="stack-label">Tools &amp; Platforms:</span>
-              <span class="stack-text">GitHub Copilot, ChatGPT, Claude, Advanced Spreadsheets</span>
+              <span class="stack-text">ChatGPT, Gemini, Claude, Copilot, Perplexity, Canva AI</span>
             </div>
+          </div>
+        </div>
+
+        <!-- Toolkit: AI tools & social platforms (brand logos) -->
+        <div class="toolkit" id="toolkit">
+          <div class="toolkit-block">
+            <div class="toolkit-head">
+              <span class="toolkit-eyebrow">AI Toolkit</span>
+              <h3>AI Tools I Work With</h3>
+              <p>Used daily for research, copywriting, scripting, creatives and faster content turnaround.</p>
+            </div>
+            <ul class="logo-grid">
+              <li class="logo-item" style="--brand: var(--text-main); --icon: url('assets/icons/openai.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>ChatGPT</strong><small>Copy, scripts &amp; research</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #8e75b2; --icon: url('assets/icons/googlegemini.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Google Gemini</strong><small>Research &amp; ideation</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #d97757; --icon: url('assets/icons/claude.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Claude</strong><small>Long-form writing &amp; analysis</small></span>
+              </li>
+              <li class="logo-item" style="--brand: var(--text-main); --icon: url('assets/icons/githubcopilot.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Copilot</strong><small>Certified prompt engineering</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #1fb8cd; --icon: url('assets/icons/perplexity.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Perplexity</strong><small>AI search &amp; competitor research</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #00c4cc; --icon: url('assets/icons/canva.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Canva AI</strong><small>Magic Studio creatives</small></span>
+              </li>
+              <li class="logo-item" style="--brand: var(--text-main);">
+                <span class="logo-mark"><i class="fa-solid fa-sailboat" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Midjourney</strong><small>AI image generation</small></span>
+              </li>
+              <li class="logo-item" style="--brand: var(--text-main);">
+                <span class="logo-mark"><i class="fa-solid fa-scissors" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>CapCut AI</strong><small>Auto captions &amp; smart edits</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #0467df; --icon: url('assets/icons/meta.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Meta AI</strong><small>Ad copy &amp; creative ideas</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #15c39a; --icon: url('assets/icons/grammarly.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Grammarly</strong><small>Proofreading &amp; tone</small></span>
+              </li>
+              <li class="logo-item" style="--brand: var(--text-main); --icon: url('assets/icons/elevenlabs.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>ElevenLabs</strong><small>AI voiceovers</small></span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="toolkit-block">
+            <div class="toolkit-head">
+              <span class="toolkit-eyebrow">Social Platforms</span>
+              <h3>Social Media I Manage</h3>
+              <p>Content planning, posting, community and performance tracking across every major platform.</p>
+            </div>
+            <ul class="logo-grid">
+              <li class="logo-item" style="--brand: #e4405f; --icon: url('assets/icons/instagram.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Instagram</strong><small>Reels, Stories &amp; Insights</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #0866ff; --icon: url('assets/icons/facebook.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Facebook</strong><small>Pages, Groups &amp; Business Suite</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #ff0000; --icon: url('assets/icons/youtube.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>YouTube</strong><small>Long-form, Shorts &amp; Studio</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #0a66c2; --icon: url('assets/icons/linkedin.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>LinkedIn</strong><small>Professional &amp; B2B content</small></span>
+              </li>
+              <li class="logo-item" style="--brand: var(--text-main); --icon: url('assets/icons/x.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>X (Twitter)</strong><small>Real-time posts &amp; threads</small></span>
+              </li>
+              <li class="logo-item" style="--brand: var(--text-main); --icon: url('assets/icons/threads.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Threads</strong><small>Conversational content</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #25d366; --icon: url('assets/icons/whatsapp.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>WhatsApp Business</strong><small>Broadcasts, catalog &amp; chat</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #bd081c; --icon: url('assets/icons/pinterest.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Pinterest</strong><small>Pins &amp; boards</small></span>
+              </li>
+              <li class="logo-item logo-item--snap" style="--brand: #111111; --icon: url('assets/icons/snapchat.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Snapchat</strong><small>Stories &amp; Spotlight</small></span>
+              </li>
+              <li class="logo-item" style="--brand: #26a5e4; --icon: url('assets/icons/telegram.svg');">
+                <span class="logo-mark"><i class="si" aria-hidden="true"></i></span>
+                <span class="logo-text"><strong>Telegram</strong><small>Channels &amp; communities</small></span>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -429,16 +563,16 @@
             </p>
           </div>
           <div class="grounding-right">
-            <span class="tools-title">Verified Platforms:</span>
+            <span class="tools-title">Platforms &amp; Tools:</span>
             <div class="clean-tool-pills">
-              <span>Google Analytics 4</span>
-              <span>Google Ads</span>
-              <span>Meta Ads</span>
-              <span>YouTube Studio</span>
-              <span>GitHub Copilot</span>
-              <span>OpenAI</span>
-              <span>MS Excel / Sheets</span>
-              <span>Premiere Pro</span>
+              <span style="--brand: #e37400; --icon: url('assets/icons/googleanalytics.svg');"><i class="si" aria-hidden="true"></i>Google Analytics 4</span>
+              <span style="--brand: #4285f4; --icon: url('assets/icons/googleads.svg');"><i class="si" aria-hidden="true"></i>Google Ads</span>
+              <span style="--brand: #0467df; --icon: url('assets/icons/meta.svg');"><i class="si" aria-hidden="true"></i>Meta Ads</span>
+              <span style="--brand: #ff0000; --icon: url('assets/icons/youtube.svg');"><i class="si" aria-hidden="true"></i>YouTube Studio</span>
+              <span style="--brand: var(--text-main); --icon: url('assets/icons/githubcopilot.svg');"><i class="si" aria-hidden="true"></i>GitHub Copilot</span>
+              <span style="--brand: var(--text-main); --icon: url('assets/icons/openai.svg');"><i class="si" aria-hidden="true"></i>OpenAI</span>
+              <span><i class="fa-solid fa-table" aria-hidden="true"></i>MS Excel / Sheets</span>
+              <span><i class="fa-solid fa-film" aria-hidden="true"></i>Premiere Pro</span>
             </div>
           </div>
         </div>
@@ -449,24 +583,15 @@
     <section class="section case-studies-section" id="case-studies">
       <div class="container">
         <div class="section-header">
-          <span class="section-subtitle">Work &amp; Strategic Projects</span>
-          <h2 class="section-title">Campaign Case Studies &amp; Operational Blueprints</h2>
+          <span class="section-subtitle">Featured Project</span>
+          <h2 class="section-title">Operational Case Study</h2>
           <p class="section-intro">
-            Real execution frameworks, operational pipelines, and performance strategies designed for measurable business impact.
+            A real content operations pipeline built and run at scale, with measurable delivery and quality impact.
           </p>
         </div>
 
-        <!-- Filter Buttons -->
-        <div class="portfolio-filter-bar">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="operations">Content &amp; Team Ops</button>
-          <button class="filter-btn" data-filter="seo">SEO &amp; Web Growth</button>
-          <button class="filter-btn" data-filter="performance">Paid Ads &amp; Campaigns</button>
-          <button class="filter-btn" data-filter="ai">AI Marketing Workflows</button>
-        </div>
-
         <!-- Projects Grid -->
-        <div class="projects-grid-v2">
+        <div class="projects-grid-v2" style="grid-template-columns: minmax(0, 820px); justify-content: start;">
           <!-- Project 1: PulseX 80+ Media Operations -->
           <div class="project-card-v2" data-category="operations">
             <div class="project-mockup-header">
@@ -524,7 +649,8 @@
               <div class="project-footer-v2">
                 <div class="project-tech-tags">
                   <span>Task Allocation</span>
-                  <span>Video QA</span>
+                  <span>Video QA / QC</span>
+                  <span>Quality Control (QC)</span>
                   <span>SOP Protocols</span>
                   <span>Pod Standups</span>
                 </div>
@@ -535,209 +661,6 @@
             </div>
           </div>
 
-          <!-- Project 2: SEO Growth & Keyword Clustering Blueprint -->
-          <div class="project-card-v2" data-category="seo">
-            <div class="project-mockup-header">
-              <div class="mockup-top-bar">
-                <div class="mockup-dots">
-                  <span class="mockup-dot red"></span>
-                  <span class="mockup-dot yellow"></span>
-                  <span class="mockup-dot green"></span>
-                </div>
-                <span class="mockup-url">google-search://serp/ranking-architecture</span>
-                <span class="mockup-live-indicator"><span class="mini-pulse"></span> Indexed</span>
-              </div>
-              <div class="mockup-preview-grid">
-                <div class="mockup-metric-tile">
-                  <span class="tile-label">Keyword Rankings</span>
-                  <span class="tile-value">Top 10 SERP</span>
-                </div>
-                <div class="mockup-metric-tile">
-                  <span class="tile-label">Search Visibility</span>
-                  <span class="tile-value">+180% Growth</span>
-                </div>
-                <div class="mockup-metric-tile highlight-tile">
-                  <span class="tile-label">Snippet CTR Boost</span>
-                  <span class="tile-value">+42% Boost</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="project-body-v2">
-              <div class="project-context-row">
-                <span class="project-client-tag">E-Commerce &amp; Service Brands</span>
-                <span class="project-role-tag">Organic Search Strategy</span>
-              </div>
-              
-              <h3 class="project-heading-v2">
-                Intent-Driven On-Page SEO &amp; Content Silo Architecture
-              </h3>
-              
-              <p class="project-summary-v2">
-                Engineered a comprehensive organic search strategy mapping high-intent commercial keywords into topical content silos with bidirectional internal linking, CTR-optimized meta titles, and clean on-page semantic hierarchy.
-              </p>
-
-              <div class="project-impact-chips">
-                <div class="impact-chip">
-                  <i class="fa-solid fa-magnifying-glass"></i> Top 10 SERP Target
-                </div>
-                <div class="impact-chip">
-                  <i class="fa-solid fa-chart-line"></i> +180% Organic Impressions
-                </div>
-                <div class="impact-chip">
-                  <i class="fa-solid fa-shield-halved"></i> Zero Crawl Errors
-                </div>
-              </div>
-
-              <div class="project-footer-v2">
-                <div class="project-tech-tags">
-                  <span>Keyword Research</span>
-                  <span>Content Silos</span>
-                  <span>Search Intent</span>
-                  <span>On-Page SEO</span>
-                </div>
-                <button class="btn btn-outline btn-sm open-modal-btn" data-modal="modal-seo">
-                  Strategy Breakdown <i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3: Performance Ads & Full-Funnel Paid Campaign -->
-          <div class="project-card-v2" data-category="performance">
-            <div class="project-mockup-header">
-              <div class="mockup-top-bar">
-                <div class="mockup-dots">
-                  <span class="mockup-dot red"></span>
-                  <span class="mockup-dot yellow"></span>
-                  <span class="mockup-dot green"></span>
-                </div>
-                <span class="mockup-url">meta-ads://campaigns/full-funnel-roas</span>
-                <span class="mockup-live-indicator"><span class="mini-pulse"></span> Scaled</span>
-              </div>
-              <div class="mockup-preview-grid">
-                <div class="mockup-metric-tile">
-                  <span class="tile-label">Target ROAS</span>
-                  <span class="tile-value">4.8x Return</span>
-                </div>
-                <div class="mockup-metric-tile">
-                  <span class="tile-label">Funnel Stages</span>
-                  <span class="tile-value">TOFU/MOFU/BOFU</span>
-                </div>
-                <div class="mockup-metric-tile highlight-tile">
-                  <span class="tile-label">Blended CPA</span>
-                  <span class="tile-value">₹380 Target</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="project-body-v2">
-              <div class="project-context-row">
-                <span class="project-client-tag">Growth Marketing Framework</span>
-                <span class="project-role-tag">Paid Advertising</span>
-              </div>
-              
-              <h3 class="project-heading-v2">
-                Multi-Platform Paid Funnel: Meta &amp; Google Ads Campaign
-              </h3>
-              
-              <p class="project-summary-v2">
-                Constructed a 3-tier paid acquisition funnel pairing short-form video hooks on Meta Ads with high-intent keyword capture on Google Search, supported by retargeting triggers to minimize acquisition costs and accelerate conversion rate.
-              </p>
-
-              <div class="project-impact-chips">
-                <div class="impact-chip">
-                  <i class="fa-solid fa-coins"></i> 4.5x - 6.0x Projected ROAS
-                </div>
-                <div class="impact-chip">
-                  <i class="fa-solid fa-filter"></i> 3-Tier Acquisition Funnel
-                </div>
-                <div class="impact-chip">
-                  <i class="fa-solid fa-arrow-down"></i> -30% Est. CPA
-                </div>
-              </div>
-
-              <div class="project-footer-v2">
-                <div class="project-tech-tags">
-                  <span>Meta Ads</span>
-                  <span>Google Ads</span>
-                  <span>Retargeting</span>
-                  <span>Hook Testing</span>
-                </div>
-                <button class="btn btn-outline btn-sm open-modal-btn" data-modal="modal-ads">
-                  Strategy Breakdown <i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 4: AI-Driven Marketing Automation & Content Machine -->
-          <div class="project-card-v2" data-category="ai">
-            <div class="project-mockup-header">
-              <div class="mockup-top-bar">
-                <div class="mockup-dots">
-                  <span class="mockup-dot red"></span>
-                  <span class="mockup-dot yellow"></span>
-                  <span class="mockup-dot green"></span>
-                </div>
-                <span class="mockup-url">copilot://ai-engine/prompt-studio</span>
-                <span class="mockup-live-indicator"><span class="mini-pulse"></span> Certified</span>
-              </div>
-              <div class="mockup-preview-grid">
-                <div class="mockup-metric-tile">
-                  <span class="tile-label">Ideation Velocity</span>
-                  <span class="tile-value">4x Faster</span>
-                </div>
-                <div class="mockup-metric-tile">
-                  <span class="tile-label">Time Saved</span>
-                  <span class="tile-value">70% Drafting</span>
-                </div>
-                <div class="mockup-metric-tile highlight-tile">
-                  <span class="tile-label">Prompt Library</span>
-                  <span class="tile-value">25+ Frameworks</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="project-body-v2">
-              <div class="project-context-row">
-                <span class="project-client-tag">Simplilearn &amp; Be10x Certified</span>
-                <span class="project-role-tag">Generative AI Acceleration</span>
-              </div>
-              
-              <h3 class="project-heading-v2">
-                AI-Powered Rapid Content Ideation &amp; Workflow Pipeline
-              </h3>
-              
-              <p class="project-summary-v2">
-                Developed standardized prompt engineering workflows and research automation templates to generate multi-angle video scripts, ad variations, and executive summary reports with zero degradation of brand tone.
-              </p>
-
-              <div class="project-impact-chips">
-                <div class="impact-chip">
-                  <i class="fa-solid fa-bolt"></i> 70% Time Saved
-                </div>
-                <div class="impact-chip">
-                  <i class="fa-solid fa-clone"></i> 10x Creative Variations
-                </div>
-                <div class="impact-chip">
-                  <i class="fa-solid fa-robot"></i> Copilot Certified
-                </div>
-              </div>
-
-              <div class="project-footer-v2">
-                <div class="project-tech-tags">
-                  <span>Prompt Engineering</span>
-                  <span>GenAI Copy</span>
-                  <span>Research Automation</span>
-                  <span>Excel AI</span>
-                </div>
-                <button class="btn btn-outline btn-sm open-modal-btn" data-modal="modal-ai">
-                  Strategy Breakdown <i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -1064,6 +987,27 @@
                 </div>
               </div>
             </div>
+
+            <div class="social-profiles">
+              <span class="social-profiles-label">Find me online</span>
+              <div class="social-profiles-list">
+                <a href="https://www.linkedin.com/in/purav-dhanki/" target="_blank" rel="noopener noreferrer" class="social-profile" style="--brand: #0a66c2; --icon: url('assets/icons/linkedin.svg');">
+                  <i class="si" aria-hidden="true"></i><span>Purav Dhanki</span>
+                </a>
+                <a href="https://www.facebook.com/purav.dhanki.96" target="_blank" rel="noopener noreferrer" class="social-profile" style="--brand: #0866ff; --icon: url('assets/icons/facebook.svg');">
+                  <i class="si" aria-hidden="true"></i><span>Purav Dhanki</span>
+                </a>
+                <a href="https://www.instagram.com/puravdhanki/" target="_blank" rel="noopener noreferrer" class="social-profile" style="--brand: #e4405f; --icon: url('assets/icons/instagram.svg');">
+                  <i class="si" aria-hidden="true"></i><span>@puravdhanki</span>
+                </a>
+                <a href="https://www.instagram.com/purav.verse/" target="_blank" rel="noopener noreferrer" class="social-profile" style="--brand: #e4405f; --icon: url('assets/icons/instagram.svg');">
+                  <i class="si" aria-hidden="true"></i><span>@purav.verse</span>
+                </a>
+                <a href="https://github.com/puravdhanki" target="_blank" rel="noopener noreferrer" class="social-profile" style="--brand: var(--text-main); --icon: url('assets/icons/github.svg');">
+                  <i class="si" aria-hidden="true"></i><span>puravdhanki</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           <div class="contact-form-col">
@@ -1123,6 +1067,14 @@
         <p class="footer-tagline">
           Digital Marketing Strategist &amp; Content Operations Specialist. Ready to create impactful, measurable growth.
         </p>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/purav-dhanki/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" style="--icon: url('assets/icons/linkedin.svg');"><i class="si" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/purav.dhanki.96" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" style="--icon: url('assets/icons/facebook.svg');"><i class="si" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/puravdhanki/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @puravdhanki" title="Instagram @puravdhanki" style="--icon: url('assets/icons/instagram.svg');"><i class="si" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/purav.verse/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @purav.verse" title="Instagram @purav.verse" style="--icon: url('assets/icons/instagram.svg');"><i class="si" aria-hidden="true"></i></a>
+          <a href="https://github.com/puravdhanki" target="_blank" rel="noopener noreferrer" aria-label="GitHub puravdhanki" title="GitHub puravdhanki" style="--icon: url('assets/icons/github.svg');"><i class="si" aria-hidden="true"></i></a>
+          <a href="https://wa.me/918108901069" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp" style="--icon: url('assets/icons/whatsapp.svg');"><i class="si" aria-hidden="true"></i></a>
+        </div>
       </div>
 
       <div class="footer-nav">
@@ -1143,8 +1095,11 @@
         <p><i class="fa-solid fa-envelope"></i> puravdhanki@hotmail.com</p>
         <p><i class="fa-solid fa-phone"></i> +91 81089 01069</p>
         <p><i class="fa-solid fa-location-dot"></i> Mira Road, Mumbai</p>
-        <a href="https://puravdhanki.github.io/Purav-Portfolio/" target="_blank" class="github-portfolio-badge">
-          <i class="fa-brands fa-github"></i> puravdhanki.github.io/Purav-Portfolio/
+        <a href="https://purav-portfolio-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="github-portfolio-badge">
+          <i class="fa-solid fa-globe"></i> purav-portfolio-one.vercel.app
+        </a>
+        <a href="https://github.com/puravdhanki/041-Portfolio-Digital-Marketing" target="_blank" rel="noopener noreferrer" class="github-portfolio-badge">
+          <i class="fa-brands fa-github"></i> View source on GitHub
         </a>
       </div>
     </div>
@@ -1333,7 +1288,7 @@
           <div class="sheet-header">
             <h2>PURAV DHANKI</h2>
             <p class="sheet-contact">
-              Mira Road, Mumbai &nbsp;|&nbsp; +91 81089 01069 &nbsp;|&nbsp; puravdhanki@hotmail.com &nbsp;|&nbsp; Portfolio: puravdhanki.github.io/Purav-Portfolio/
+              Mira Road, Mumbai &nbsp;|&nbsp; +91 81089 01069 &nbsp;|&nbsp; puravdhanki@hotmail.com &nbsp;|&nbsp; Portfolio: purav-portfolio-one.vercel.app
             </p>
           </div>
 

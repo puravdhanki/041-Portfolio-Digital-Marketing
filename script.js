@@ -15,7 +15,56 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initBackToTop();
   setCurrentYear();
+  initScrollReveal();
 });
+
+/* ==========================================================================
+   Scroll Reveal: content fades up gently as it enters the viewport.
+   Skipped for reduced-motion users and browsers without IntersectionObserver.
+   ========================================================================== */
+function initScrollReveal() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+  const groups = [
+    '.section-header',
+    '.about-grid > *',
+    '.skills-grid-v2 > *',
+    '.toolkit-head',
+    '.logo-grid > *',
+    '.skills-grounding-strip',
+    '.project-card-v2',
+    '.timeline-item',
+    '.cert-card',
+    '.education-banner',
+    '.calculator-section .container > *:not(.section-header)',
+    '.contact-section .container > *:not(.section-header)'
+  ];
+
+  const items = [];
+  groups.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      if (el.classList.contains('reveal')) return;
+      el.classList.add('reveal');
+      // Small stagger between siblings, capped so long lists don't drag
+      el.style.setProperty('--reveal-delay', Math.min(i, 6) * 60 + 'ms');
+      items.push(el);
+    });
+  });
+
+  document.documentElement.classList.add('js-reveal');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach((el) => observer.observe(el));
+}
 
 /* ==========================================================================
    1. Theme Toggle (Dark / Light)
@@ -24,25 +73,24 @@ function initThemeToggle() {
   const toggleBtn = document.getElementById('themeToggle');
   if (!toggleBtn) return;
 
-  const currentTheme = localStorage.getItem('purav_theme') || 'dark';
-  if (currentTheme === 'light') {
-    document.body.classList.remove('dark-theme');
-    document.body.classList.add('light-theme');
-    toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-  }
+  // Light is the default; the icon shows the theme you'll switch to.
+  const applyTheme = (theme) => {
+    const isDark = theme === 'dark';
+    document.body.classList.toggle('dark-theme', isDark);
+    document.body.classList.toggle('light-theme', !isDark);
+    toggleBtn.innerHTML = isDark
+      ? '<i class="fa-solid fa-sun"></i>'
+      : '<i class="fa-solid fa-moon"></i>';
+  };
+
+  let savedTheme = 'light';
+  try { savedTheme = localStorage.getItem('purav_theme_v2') || 'light'; } catch (e) {}
+  applyTheme(savedTheme);
 
   toggleBtn.addEventListener('click', () => {
-    if (document.body.classList.contains('light-theme')) {
-      document.body.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-      localStorage.setItem('purav_theme', 'dark');
-    } else {
-      document.body.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-      toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-      localStorage.setItem('purav_theme', 'light');
-    }
+    const next = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('purav_theme_v2', next); } catch (e) {}
   });
 }
 
@@ -70,48 +118,49 @@ function initMobileNav() {
   const navMenu = document.getElementById('navMenu');
   if (!mobileToggle || !navMenu) return;
 
-  function toggleMenu(forceClose = false) {
-    if (forceClose) {
-      mobileToggle.classList.remove('active');
-      navMenu.classList.remove('active');
-      document.body.style.overflow = '';
-      return;
-    }
+  // Must match the CSS breakpoint where the hamburger menu takes over
+  const MOBILE_NAV_MAX = 1100;
 
-    mobileToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-
-    if (navMenu.classList.contains('active')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+  function setMenu(open) {
+    mobileToggle.classList.toggle('active', open);
+    navMenu.classList.toggle('active', open);
+    document.body.classList.toggle('nav-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    mobileToggle.setAttribute('aria-expanded', String(open));
+    mobileToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
   }
+
+  const isOpen = () => navMenu.classList.contains('active');
 
   mobileToggle.addEventListener('click', (e) => {
     e.stopPropagation();
-    toggleMenu();
+    setMenu(!isOpen());
   });
 
-  // Close menu when clicking any nav link
-  const navLinks = navMenu.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      toggleMenu(true);
-    });
+  // Close when any link inside the menu is used (nav links, CTAs, socials)
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setMenu(false));
   });
 
-  // Close when clicking outside of nav on mobile
+  // Close when clicking outside of the menu
   document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
-      toggleMenu(true);
+    if (isOpen() && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+      setMenu(false);
     }
   });
 
-  // Close on window resize to desktop
+  // Close with Escape and return focus to the toggle
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) {
+      setMenu(false);
+      mobileToggle.focus();
+    }
+  });
+
+  // Close when resizing up to the desktop layout
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
-      toggleMenu(true);
+    if (window.innerWidth > MOBILE_NAV_MAX && isOpen()) {
+      setMenu(false);
     }
   });
 }
