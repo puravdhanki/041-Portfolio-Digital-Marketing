@@ -1963,6 +1963,233 @@ body.light-theme .mockup-metric-tile {
 }
 
 /* ==========================================================================
+   Instagram Project Card (@purav.verse AI Reels Showcase)
+   ========================================================================== */
+.project-card-ai-reels {
+  border-color: rgba(228, 64, 95, 0.28);
+}
+
+.project-card-ai-reels:hover {
+  border-color: rgba(228, 64, 95, 0.55);
+  box-shadow: 0 16px 36px -10px rgba(228, 64, 95, 0.25);
+}
+
+.project-mockup-ig {
+  background: linear-gradient(180deg, #16101c 0%, #0d121d 100%);
+  padding: 1.2rem 1.4rem;
+  border-bottom: 1px solid rgba(228, 64, 95, 0.2);
+}
+
+.ig-badge {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 0.22rem 0.65rem;
+  font-size: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(220, 39, 67, 0.3);
+}
+
+.ig-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(220, 39, 67, 0.45);
+}
+
+.ig-tag {
+  background: rgba(228, 64, 95, 0.12) !important;
+  color: #e4405f !important;
+  border: 1px solid rgba(228, 64, 95, 0.3) !important;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--border-radius-full);
+}
+
+.reels-mockup-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.7rem;
+}
+
+.reel-preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease;
+}
+
+.reel-preview-card:hover {
+  transform: translateY(-4px);
+}
+
+.reel-thumb {
+  position: relative;
+  aspect-ratio: 9 / 13;
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reel-thumb-1 {
+  background: radial-gradient(circle at 50% 30%, #4338ca 0%, #1e1b4b 60%, #09090b 100%);
+}
+
+.reel-thumb-2 {
+  background: radial-gradient(circle at 50% 30%, #be185d 0%, #701a75 55%, #0f172a 100%);
+}
+
+.reel-thumb-3 {
+  background: radial-gradient(circle at 50% 30%, #2563eb 0%, #1e3a8a 55%, #050b14 100%);
+}
+
+.reel-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.6rem 0.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.25s ease;
+}
+
+.reel-preview-card:hover .reel-overlay {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.reel-play-icon {
+  align-self: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  padding-left: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.reel-preview-card:hover .reel-play-icon {
+  transform: scale(1.15);
+  background: #ffffff;
+  color: #e4405f;
+}
+
+.reel-badge {
+  font-size: 0.64rem;
+  font-weight: 600;
+  padding: 0.2rem 0.45rem;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+}
+
+.reel-stat {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  align-self: flex-end;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+}
+
+.reel-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.reel-preview-card:hover .reel-title {
+  color: #e4405f;
+}
+
+.ig-cta-btn {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(220, 39, 67, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.ig-cta-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220, 39, 67, 0.5);
+}
+
+.project-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* Light theme support for Instagram Reel Card */
+body.light-theme .project-card-ai-reels {
+  border-color: rgba(228, 64, 95, 0.22);
+  background: #ffffff;
+}
+
+body.light-theme .project-card-ai-reels:hover {
+  border-color: rgba(228, 64, 95, 0.48);
+  box-shadow: 0 16px 36px -10px rgba(228, 64, 95, 0.2);
+}
+
+body.light-theme .project-mockup-ig {
+  background: linear-gradient(180deg, #fff0f3 0%, #f8fafc 100%);
+  border-bottom-color: #fce7eb;
+}
+
+body.light-theme .reel-thumb {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .reel-title {
+  color: #334155;
+}
+
+body.light-theme .reel-preview-card:hover .reel-title {
+  color: #e4405f;
+}
+
+/* ==========================================================================
    Experience Timeline
    ========================================================================== */
 .timeline-wrapper {
