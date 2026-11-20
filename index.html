@@ -759,40 +759,99 @@
                 </a>
               </div>
 
-              <!-- Instagram Reels Showcase Preview -->
-              <div class="reels-mockup-row">
-                <a href="https://www.instagram.com/purav.verse/reels/" target="_blank" rel="noopener noreferrer" class="reel-preview-card" title="Watch AI Tools Reels on Instagram">
-                  <div class="reel-thumb reel-thumb-1">
-                    <div class="reel-overlay">
-                      <span class="reel-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tools</span>
-                      <span class="reel-play-icon"><i class="fa-solid fa-play"></i></span>
-                      <span class="reel-stat"><i class="fa-brands fa-instagram"></i> Watch</span>
-                    </div>
-                  </div>
-                  <span class="reel-title">AI Automation Tools</span>
-                </a>
+              <!-- High-Fidelity Interactive On-Page Reel Player -->
+              <div class="onpage-reel-container">
+                <!-- Reel Category Selector Tabs -->
+                <div class="reel-tabs-bar">
+                  <button type="button" class="reel-tab-btn active" data-reel-index="0">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> #1 AI Productivity
+                  </button>
+                  <button type="button" class="reel-tab-btn" data-reel-index="1">
+                    <i class="fa-solid fa-chart-line"></i> #2 Video Automation
+                  </button>
+                  <button type="button" class="reel-tab-btn" data-reel-index="2">
+                    <i class="fa-solid fa-film"></i> #3 GenAI Storytelling
+                  </button>
+                </div>
 
-                <a href="https://www.instagram.com/purav.verse/reels/" target="_blank" rel="noopener noreferrer" class="reel-preview-card" title="Watch Marketing Strategies on Instagram">
-                  <div class="reel-thumb reel-thumb-2">
-                    <div class="reel-overlay">
-                      <span class="reel-badge"><i class="fa-solid fa-chart-line"></i> Growth</span>
-                      <span class="reel-play-icon"><i class="fa-solid fa-play"></i></span>
-                      <span class="reel-stat"><i class="fa-brands fa-instagram"></i> Watch</span>
+                <!-- Active On-Page Reel Video Mockup Screen -->
+                <div class="reel-screen-frame">
+                  <div class="reel-video-stage" id="reelVideoStage">
+                    <div class="reel-background-visual reel-bg-1" id="reelActiveBg">
+                      <div class="ai-neural-grid"></div>
+                      <div class="ai-glow-orb"></div>
                     </div>
-                  </div>
-                  <span class="reel-title">Marketing &amp; SEO Hacks</span>
-                </a>
 
-                <a href="https://www.instagram.com/purav.verse/reels/" target="_blank" rel="noopener noreferrer" class="reel-preview-card" title="Watch Generative Stories on Instagram">
-                  <div class="reel-thumb reel-thumb-3">
-                    <div class="reel-overlay">
-                      <span class="reel-badge"><i class="fa-solid fa-robot"></i> Generative</span>
-                      <span class="reel-play-icon"><i class="fa-solid fa-play"></i></span>
-                      <span class="reel-stat"><i class="fa-brands fa-instagram"></i> Watch</span>
+                    <!-- Top Header inside Video -->
+                    <div class="reel-stage-header">
+                      <div class="reel-author">
+                        <span class="reel-avatar">PD</span>
+                        <div class="reel-author-meta">
+                          <span class="reel-handle">purav.verse <i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 0.7rem;"></i></span>
+                          <span class="reel-audio-track"><i class="fa-solid fa-music"></i> Original Audio &bull; Purav Dhanki</span>
+                        </div>
+                      </div>
+                      <button type="button" class="reel-follow-pill" id="reelFollowBtn">Follow</button>
+                    </div>
+
+                    <!-- Center Interactive Play/Pause Button -->
+                    <button type="button" class="reel-center-play-btn" id="reelPlayToggle" aria-label="Play Reel on Page" title="Click to Play on Page">
+                      <i class="fa-solid fa-play" id="reelPlayIcon"></i>
+                    </button>
+
+                    <!-- Right Side Floating Actions -->
+                    <div class="reel-side-actions">
+                      <button type="button" class="reel-action-btn" id="reelLikeBtn" title="Like Reel">
+                        <i class="fa-solid fa-heart" id="reelHeartIcon"></i>
+                        <span id="reelLikesCount">1.4K</span>
+                      </button>
+                      <button type="button" class="reel-action-btn" title="Comments">
+                        <i class="fa-solid fa-comment"></i>
+                        <span>86</span>
+                      </button>
+                      <button type="button" class="reel-action-btn" title="Share Reel">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Share</span>
+                      </button>
+                      <div class="reel-disc-spinner" id="reelDiscSpinner">
+                        <i class="fa-brands fa-instagram"></i>
+                      </div>
+                    </div>
+
+                    <!-- Bottom Reel Caption & Hook -->
+                    <div class="reel-stage-bottom">
+                      <div class="reel-hook-tag" id="reelHookTag">AI PRODUCTIVITY ENGINE</div>
+                      <h4 class="reel-video-title" id="reelVideoTitle">"3 AI Tools That Feel Illegal to Know in 2026"</h4>
+                      <p class="reel-caption-text" id="reelCaptionText">
+                        Stop wasting 4 hours on research. Here is the exact prompt workflow I use to generate 30 high-converting marketing hooks in under 5 minutes...
+                      </p>
+                      
+                      <!-- Video Progress Bar -->
+                      <div class="reel-progress-wrap">
+                        <div class="reel-progress-bar" id="reelProgressBar"></div>
+                      </div>
                     </div>
                   </div>
-                  <span class="reel-title">AI Visuals &amp; Stories</span>
-                </a>
+                </div>
+
+                <!-- 3 Quick Reel Switcher Cards -->
+                <div class="reels-strip-grid">
+                  <div class="reel-strip-item active" data-reel-index="0">
+                    <span class="strip-badge">#1 AI Tools</span>
+                    <span class="strip-title">3 AI Tools for Marketers</span>
+                    <span class="strip-views"><i class="fa-solid fa-play" style="color: #e4405f;"></i> Click to Play</span>
+                  </div>
+                  <div class="reel-strip-item" data-reel-index="1">
+                    <span class="strip-badge">#2 Automation</span>
+                    <span class="strip-title">Video Script Prompts</span>
+                    <span class="strip-views"><i class="fa-solid fa-play" style="color: #e4405f;"></i> Click to Play</span>
+                  </div>
+                  <div class="reel-strip-item" data-reel-index="2">
+                    <span class="strip-badge">#3 GenAI Video</span>
+                    <span class="strip-title">Visual AI Storytelling</span>
+                    <span class="strip-views"><i class="fa-solid fa-play" style="color: #e4405f;"></i> Click to Play</span>
+                  </div>
+                </div>
               </div>
             </div>
 
