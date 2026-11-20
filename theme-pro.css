@@ -97,6 +97,14 @@ body.dark-theme {
 }
 
 /* ---------- Base ---------- */
+html {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
 body[class] {
   background: var(--bg-primary);
   color: var(--text-main);
@@ -106,6 +114,10 @@ body[class] {
   font-feature-settings: 'ss01', 'cv11';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
 
 body[class] .bg-mesh,
@@ -335,6 +347,7 @@ body[class] .hero-section {
   padding-bottom: 6rem;
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
 /* Subtle product-site grid, fading out toward the edges */
 body[class] .hero-section::before {
@@ -1361,57 +1374,183 @@ body[class] .nav-link { white-space: nowrap; }
   body[class] .nav-link { padding: 0.6rem 0.25rem; font-size: 1.1rem; }
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive: Comprehensive All-Screen Optimization ---------- */
 
+/* 1. Large Displays (>= 1440px) */
+@media (min-width: 1440px) {
+  body[class] .container { max-width: 1320px; }
+  body[class] .hero-title { font-size: 3.35rem; }
+}
+
+@media (min-width: 1920px) {
+  body[class] .container { max-width: 1480px; }
+  body[class] .section { padding: 6.5rem 0; }
+}
+
+/* 2. Tablets & Small Laptops (<= 1024px) */
 @media (max-width: 1024px) {
   body[class] .hero-container { grid-template-columns: 1fr; gap: 3rem; }
   body[class] .hero-content,
   body[class] .hero-title { text-align: left; }
-  body[class] .hero-description { margin-left: 0; margin-right: 0; }
+  body[class] .hero-description { margin-left: 0; margin-right: 0; max-width: 100%; }
   body[class] .hero-badge { justify-content: flex-start; text-align: left; }
   body[class] .hero-cta-group,
   body[class] .hero-socials { justify-content: flex-start; }
   body[class] .hero-social-strip { justify-content: flex-start; align-items: flex-start; text-align: left; }
-  body[class] .hero-visual { display: block; width: 100%; max-width: 480px; margin: 0; }
-  body[class] .visual-card-wrapper { margin: 0; max-width: 480px; width: 100%; }
+  body[class] .hero-visual { display: block; width: 100%; max-width: 440px; margin: 0 auto; }
+  body[class] .visual-card-wrapper { margin: 0 auto; max-width: 440px; width: 100%; }
   body[class] .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   body[class] .metric-card:nth-child(3) { border-left: 0; }
   body[class] .metric-card:nth-child(n+3) { border-top: 1px solid var(--bg-glass-border); }
+  body[class] .projects-grid-v2 { grid-template-columns: 1fr; gap: 2rem; }
+  body[class] .calculator-box { grid-template-columns: 1fr; gap: 2.25rem; }
+  body[class] .contact-card-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+  body[class] .about-grid { grid-template-columns: 1fr; gap: 2.2rem; }
 }
 
+/* 3. Medium Tablets & Mobile Landscape (<= 768px) */
 @media (max-width: 768px) {
-  body[class] .section { padding: 4.5rem 0; }
-  body[class] .hero-section { padding-top: 7.5rem; padding-bottom: 3.5rem; }
-  body[class] .section-header { margin-bottom: 2.25rem; }
-  body[class] .hero-cta-group .btn { width: 100%; justify-content: center; }
-  body[class] .hero-cta-group .btn-outline { width: auto; }
-  body[class] .contact-card-wrapper { grid-template-columns: minmax(0, 1fr); }
+  body[class] .section { padding: 4rem 0; }
+  body[class] .hero-section { padding-top: 7rem; padding-bottom: 3rem; }
+  body[class] .section-header { margin-bottom: 2rem; }
+  body[class] .section-title { font-size: 1.85rem; }
+  body[class] .hero-cta-group { display: flex; flex-direction: column; width: 100%; gap: 0.75rem; }
+  body[class] .hero-cta-group .btn,
+  body[class] .hero-cta-group .btn-outline { width: 100%; justify-content: center; min-height: 48px; }
+  body[class] .contact-card-wrapper { grid-template-columns: 1fr; }
   body[class] .form-card { padding: 1.5rem; }
-  body[class] .toolkit { margin-top: 3.5rem; gap: 3rem; }
-  body[class] .logo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+  body[class] .toolkit { margin-top: 3rem; gap: 2.5rem; }
+  body[class] .logo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; }
   body[class] .logo-item { padding: 0.75rem; gap: 0.65rem; }
   body[class] .logo-mark { width: 36px; height: 36px; font-size: 1.05rem; border-radius: 9px; }
   body[class] .logo-text strong { font-size: 0.85rem; }
   body[class] .logo-text small { font-size: 0.72rem; }
-  body[class] .project-card-v2 .mockup-preview-grid { grid-template-columns: 1fr 1fr; }
-  body[class] .metrics-banner { padding-bottom: 3.5rem; }
-  body[class] .metric-card { padding: 1.25rem; }
+  body[class] .project-card-v2 .mockup-preview-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  body[class] .metrics-banner { padding-bottom: 3rem; }
+  body[class] .metric-card { padding: 1.25rem 1rem; }
+  body[class] .certs-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  body[class] .education-banner { flex-direction: column; text-align: center; padding: 1.75rem 1.25rem; gap: 1rem; }
+  body[class] .footer-container { grid-template-columns: 1fr; gap: 2rem; }
+  body[class] .timeline-wrapper { padding-left: 2rem; }
+  body[class] .timeline-wrapper::before { left: 11px; }
+  body[class] .timeline-marker { left: -2rem; width: 28px; height: 28px; font-size: 0.75rem; }
 }
 
-@media (max-width: 480px) {
+/* 4. Standard Mobile Devices (<= 540px) */
+@media (max-width: 540px) {
   body[class] .container,
   body[class] .header-container { padding-left: 1rem; padding-right: 1rem; }
-  body[class] .profile-card { padding: 1.25rem; }
-  body[class] .status-metric { padding: 0.75rem; }
-  body[class] .status-metric .metric-num { font-size: 1.15rem; }
-  body[class] .header-actions .btn-sm { display: none; }
+  body[class] .header-actions .btn { display: none; }
+  body[class] .hero-section { padding-top: 6rem; padding-bottom: 2.25rem; }
+  body[class] .hero-title { font-size: 2rem; line-height: 1.25; }
+  body[class] .hero-badge { font-size: 0.78rem; padding: 0.35rem 0.75rem; line-height: 1.4; }
+  body[class] .profile-card { padding: 1.4rem 1.15rem; max-width: 100%; }
+  
+  /* Details List: stacked layout prevents awkward text squashing */
+  body[class] .snapshot-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.75rem 0;
+  }
+  body[class] .snapshot-list .label { font-size: 0.68rem; }
+  body[class] .snapshot-list .val { font-size: 0.92rem; word-break: break-word; }
+  
+  /* Mockup Header Tiles on Mobile: clean card rows */
+  body[class] .project-card-v2 .mockup-preview-grid {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+  body[class] .mockup-metric-tile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: 0.6rem 0.85rem;
+  }
+  body[class] .tile-label { margin: 0; font-size: 0.7rem; }
+  body[class] .tile-value { font-size: 0.92rem; }
+  
+  /* Project Body & Buttons */
+  body[class] .project-body-v2 { padding: 1.4rem 1.15rem; }
+  body[class] .project-heading-v2 { font-size: 1.22rem; }
+  body[class] .project-footer-v2 { flex-direction: column; align-items: stretch; gap: 0.9rem; }
+  body[class] .project-action-buttons { flex-direction: column; width: 100%; gap: 0.55rem; }
+  body[class] .project-action-buttons .btn { width: 100%; justify-content: center; min-height: 44px; }
+  body[class] .project-footer-v2 .open-modal-btn { width: 100%; justify-content: center; min-height: 44px; }
+  
+  /* Contact Cards: prevent overflow on long numbers */
+  body[class] .channel-card {
+    padding: 0.9rem 1rem;
+    gap: 0.85rem;
+  }
+  body[class] .channel-value {
+    font-size: 0.88rem;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  
+  /* Mobile Form Elements: 16px font-size prevents iOS Safari zoom */
+  body[class] input,
+  body[class] select,
+  body[class] textarea {
+    font-size: 16px !important;
+    min-height: 46px;
+  }
+  body[class] .form-card { padding: 1.4rem 1.15rem; }
+  body[class] #submitBtn { min-height: 50px; font-size: 0.95rem; }
+  
+  /* Modal on Mobile */
+  body[class] .modal-dialog {
+    padding: 1.5rem 1rem;
+    max-height: 92vh;
+    max-height: 92dvh;
+    width: 100%;
+  }
+  body[class] .modal-reels-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  body[class] .modal-metrics-row {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  
+  /* Floating Button */
+  body[class] .back-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 44px;
+    height: 44px;
+    font-size: 0.95rem;
+  }
 }
 
-@media (max-width: 360px) {
-  body[class] .logo-grid { grid-template-columns: 1fr; }
+/* 5. Compact & Small Phones (<= 380px - iPhone SE, Galaxy Fold outer, etc.) */
+@media (max-width: 380px) {
+  body[class] .container,
+  body[class] .header-container { padding-left: 0.75rem; padding-right: 0.75rem; }
+  body[class] .brand-name { font-size: 0.98rem; }
+  body[class] .brand-badge { width: 28px; height: 28px; font-size: 0.75rem; }
+  body[class] .mobile-toggle { width: 36px; height: 36px; }
+  body[class] #themeToggle { width: 36px; height: 36px; }
+  body[class] .hero-title { font-size: 1.75rem; letter-spacing: -0.03em; }
+  body[class] .hero-badge { font-size: 0.72rem; padding: 0.25rem 0.6rem; }
+  body[class] .section { padding: 3.25rem 0; }
+  body[class] .section-title { font-size: 1.6rem; }
   body[class] .metrics-grid { grid-template-columns: 1fr; }
-  body[class] .metric-card { border-left: 0; border-top: 1px solid var(--bg-glass-border); }
-  body[class] .metric-card:first-child { border-top: 0; }
+  body[class] .metric-card {
+    border-left: 0 !important;
+    border-top: 1px solid var(--bg-glass-border) !important;
+    padding: 0.9rem 0.5rem;
+  }
+  body[class] .metric-card:first-child { border-top: 0 !important; }
+  body[class] .metric-info .counter { font-size: 1.75rem; }
+  body[class] .logo-grid { grid-template-columns: 1fr; }
+  body[class] .project-body-v2 { padding: 1.2rem 0.85rem; }
+  body[class] .project-heading-v2 { font-size: 1.15rem; }
+  body[class] .form-card { padding: 1.2rem 0.85rem; }
+  body[class] .back-to-top { bottom: 1rem; right: 1rem; width: 40px; height: 40px; font-size: 0.9rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
