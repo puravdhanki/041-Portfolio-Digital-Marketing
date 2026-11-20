@@ -22,7 +22,11 @@ Personal portfolio of **Purav Dhanki**, Digital Marketing & Operations professio
   - Performance Marketing & Paid Ads (Meta Ads, Google Ads) — *currently learning*
   - AI Marketing & Productivity
 - **Toolkit** — brand-logo grids for the AI tools I use (ChatGPT, Gemini, Claude, Copilot, Perplexity, Canva AI, Midjourney, CapCut AI, Meta AI, Grammarly, ElevenLabs) and the social platforms I manage (Instagram, Facebook, YouTube, LinkedIn, X, Threads, WhatsApp Business, Pinterest, Snapchat, Telegram).
-- **Featured project** — *Large-Scale Video & Social Media Content Engine* (PulseX Media): 80+ member team, task allocation, 12-point QA/QC, 100% on-time delivery.
+- **Projects:**
+  - *Large-Scale Video & Social Media Content Engine* (PulseX Media): 80+ member team, task allocation, 12-point QA/QC, 100% on-time delivery.
+  - *AI-Generated Short-Form Content*: [@purav.verse](https://www.instagram.com/purav.verse/) Instagram reels channel.
+  - *Purav Verse Guide Hub*: [purav-verse.vercel.app](https://purav-verse.vercel.app/), free 15-day Performance Marketing series with a PDF guide for every reel.
+  - *DiamondFlow*: [diamondflow.in](https://diamondflow.in/), ERP for jewellery & diamond businesses (GST invoices, live stock, team roles, UPI); pre-launch.
 - **Experience** — Operations Team Leader (PulseX Media Solutions) and Customer Operations (Epicenter Technologies, Best Performer Aug 2025).
 - **Certifications & education** — IIDE, Simplilearn (Prompt Engineering with GitHub Copilot), Office Master & Be10x, Great Learning; B.Sc. IT (University of Mumbai).
 - **ROI / ROAS calculator** — interactive campaign estimator.

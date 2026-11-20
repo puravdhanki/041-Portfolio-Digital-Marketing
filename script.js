@@ -407,140 +407,106 @@ function initRoiCalculator() {
 }
 
 /* ==========================================================================
-   9. Contact Form Handling (Instant Direct WhatsApp Delivery + Silent Background Backup)
+   9. Contact Form Handling (email delivery via FormSubmit, no WhatsApp)
    ========================================================================== */
+const CONTACT_ENDPOINT = 'https://formsubmit.co/ajax/puravdhanki@hotmail.com';
+const CONTACT_EMAIL = 'puravdhanki@hotmail.com';
+const SUBMIT_LABEL = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+
+function setFormStatus(statusDiv, type, text, linkHref, linkText) {
+  statusDiv.textContent = '';
+  statusDiv.className = `form-status form-status--${type}`;
+  const icon = document.createElement('i');
+  icon.className = type === 'success'
+    ? 'fa-solid fa-circle-check'
+    : type === 'error' ? 'fa-solid fa-circle-exclamation' : 'fa-solid fa-spinner fa-spin';
+  icon.setAttribute('aria-hidden', 'true');
+  const msg = document.createElement('span');
+  msg.textContent = ` ${text}`;
+  statusDiv.append(icon, msg);
+  if (linkHref) {
+    const a = document.createElement('a');
+    a.href = linkHref;
+    a.textContent = linkText;
+    statusDiv.append(' ', a);
+  }
+}
+
 function initContactForm() {
   const form = document.getElementById('contactForm');
   const statusDiv = document.getElementById('formStatus');
   const submitBtn = document.getElementById('submitBtn');
-  if (!form) return;
+  if (!form || !statusDiv) return;
+  statusDiv.setAttribute('role', 'status');
+  statusDiv.setAttribute('aria-live', 'polite');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = document.getElementById('senderName').value.trim();
     const email = document.getElementById('senderEmail').value.trim();
     const inquiry = document.getElementById('inquiryType').value;
     const message = document.getElementById('senderMessage').value.trim();
+    const honey = form.querySelector('[name="_honey"]');
 
     if (!name || !email || !message) {
-      statusDiv.innerHTML = '<span style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i> Please fill in all required fields.</span>';
+      setFormStatus(statusDiv, 'error', 'Please fill in all required fields.');
+      return;
+    }
+    // Bots fill hidden fields; quietly pretend success.
+    if (honey && honey.value) {
+      form.reset();
+      setFormStatus(statusDiv, 'success', 'Thanks! Your message has been sent.');
       return;
     }
 
-    // 1. Format clean, readable WhatsApp alert message
-    const waText = 
-`🔔 *New Inquiry from Portfolio Website!*
-━━━━━━━━━━━━━━━━━━━━
-👤 *Name:* ${name}
-✉️ *Email:* ${email}
-🎯 *Inquiry Type:* ${inquiry}
-
-💬 *Message:*
-"${message}"
-━━━━━━━━━━━━━━━━━━━━
-📱 *Portfolio:* Purav Dhanki - Digital Marketing & Content Operations`;
-
-    const encodedWaText = encodeURIComponent(waText);
-    const waUrl = `https://wa.me/918108901069?text=${encodedWaText}`;
-
-    // 2. Local Storage Persistence (Always saved in browser database)
-    const payload = {
-      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-      name: name,
-      email: email,
-      inquiry: inquiry,
-      message: message
-    };
-
-    try {
-      const storedLeads = JSON.parse(localStorage.getItem('purav_portfolio_leads') || '[]');
-      storedLeads.push(payload);
-      localStorage.setItem('purav_portfolio_leads', JSON.stringify(storedLeads));
-    } catch (err) {
-      console.log('LocalStorage save:', err);
-    }
-
-    // 3. Silent Background Email Dispatch (Backup via FormSubmit without any page redirect)
-    try {
-      fetch("https://formsubmit.co/ajax/puravdhanki@hotmail.com", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          inquiry: inquiry,
-          message: message,
-          _subject: `New Lead: ${inquiry} - ${name}`,
-          _template: "table"
-        })
-      }).catch(err => console.log("Silent email notification backup:", err));
-    } catch (err) {
-      console.log(err);
-    }
-
-    // 4. Update UI State
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Redirecting to WhatsApp...';
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
     }
+    setFormStatus(statusDiv, 'pending', 'Sending your message...');
 
-    showToast(`Thank you, ${name}! Redirecting to WhatsApp...`);
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          inquiry,
+          message,
+          _replyto: email,
+          _subject: `Portfolio inquiry: ${inquiry} from ${name}`,
+          _template: 'table'
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      const ok = res.ok && (data.success === true || data.success === 'true');
+      if (!ok) {
+        console.error('Contact form rejected by FormSubmit:', res.status, data);
+        // First use: FormSubmit emails an "Activate Form" link instead of delivering.
+        if (/activat/i.test(data.message || '')) {
+          setFormStatus(statusDiv, 'error', 'This form is still being set up, so your message was not delivered yet.', `mailto:${CONTACT_EMAIL}`, 'Email Purav directly');
+          return;
+        }
+        throw new Error(data.message || `HTTP ${res.status}`);
+      }
 
-    statusDiv.innerHTML = `
-      <div style="margin-top: 0.9rem; padding: 1rem 1.2rem; background: rgba(37, 211, 102, 0.12); border: 1px solid rgba(37, 211, 102, 0.35); border-radius: 10px; color: #25d366; font-size: 0.9rem; text-align: left;">
-        <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem;">
-          <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i>
-          <strong style="color: #25d366;">Connecting to WhatsApp...</strong>
-        </div>
-        <p style="margin: 0 0 0.8rem 0; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
-          Your inquiry has been prepared with your details. Click below if WhatsApp did not open automatically:
-        </p>
-        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm" style="background: #25d366; color: #ffffff; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 600; border-radius: 6px; padding: 0.45rem 1rem;">
-          <i class="fa-brands fa-whatsapp"></i> Open WhatsApp Now
-        </a>
-      </div>
-    `;
-
-    // 5. Open WhatsApp directly in new window/app
-    const waWindow = window.open(waUrl, '_blank');
-    if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
-      // If popup blocker intervened, redirect current tab or user clicks the green button above
-      window.location.href = waUrl;
-    }
-
-    form.reset();
-
-    setTimeout(() => {
+      form.reset();
+      setFormStatus(statusDiv, 'success', `Thanks, ${name}! Your message has been sent. Purav will reply to ${email} soon.`);
+      showToast('Message sent successfully');
+    } catch (err) {
+      console.error('Contact form failed:', err);
+      const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Portfolio inquiry: ${inquiry}`)}&body=${encodeURIComponent(`${message}\n\n${name}\n${email}`)}`;
+      setFormStatus(statusDiv, 'error', "Sorry, the message couldn't be sent right now.", mailto, 'Email Purav directly instead');
+    } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message &amp; Notify via WhatsApp';
+        submitBtn.innerHTML = SUBMIT_LABEL;
       }
-    }, 3000);
+    }
   });
 }
-
-// Global helper function to export all inquiries stored in browser anytime
-window.exportLeadsToCsv = function() {
-  const leads = JSON.parse(localStorage.getItem('purav_portfolio_leads') || '[]');
-  if (leads.length === 0) {
-    alert("No inquiries recorded yet.");
-    return;
-  }
-  let csv = "Timestamp,Name,Email,Inquiry,Message\n";
-  leads.forEach(l => {
-    csv += `"${l.timestamp}","${l.name}","${l.email}","${l.inquiry}","${(l.message || '').replace(/"/g, '""')}"\n`;
-  });
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `Portfolio_Leads_${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
-};
 
 function showToast(message) {
   const toast = document.getElementById('toastNotification');
